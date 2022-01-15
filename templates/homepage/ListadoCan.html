@@ -1,0 +1,54 @@
+{% extends 'base/baseListasImagen.html' %}
+{% load static %}
+{% block listadoImg %}
+    {% if object_list %}
+        <div class="row row-cols-1 row-cols-md-3">
+        {% for animalesAdopcion in object_list %}
+
+                <!--<a class="button " href="detalleAnimCan/{{ animalesAdopcion.slug }}"> -->
+                <a class="button " href="{% url 'DetalleEnAdopCan' animalesAdopcion.slug %}">
+                    <div class="col mb-4">
+                        <div class="card-header bg-info"><h4>{{ animalesAdopcion.animal.nombre }}
+                            - {{ animalesAdopcion.animal.organizacion.nomorganizacion }}</h4></div>
+                        <div class="card h-100">
+                            <div class="embed-responsive embed-responsive-1by1">
+                                <img alt="Card image cap" class="card-img-top embed-responsive-item"
+                                     src="{{ animalesAdopcion.fotoEnAdopcion.url }}"/>
+                            </div>
+                            <hr>
+                            <div class="card-body">
+                                <h5 class="card-text">
+                                    <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.especie }} <br>
+                                    <i class="fas fa-check-circle"></i> {{ animalesAdopcion.edad_Anim }} -
+                                    {{ animalesAdopcion.edadAnimal }} {{ animalesAdopcion.tipoedadR }}<br>
+                                    <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.sexo }}<br>
+                                    <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.tamano }}<br>
+                                    {% if animalesAdopcion.animal.datosMedicos.esterilizacion %}
+                                        {% if animalesAdopcion.animal.sexo == 'Hembra' %}
+                                            <i class="fas fa-check-circle"></i> Esterilizada <br>
+                                        {% elif animalesAdopcion.animal.sexo == 'Macho' %}
+                                            <i class="fas fa-check-circle"></i> Castrado <br>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if animalesAdopcion.animal.sexo == 'Hembra' %}
+                                            <i class="fas fa-times-circle"></i> Esterilizada <br>
+                                        {% elif animalesAdopcion.animal.sexo == 'Macho' %}
+                                            <i class="fas fa-times-circle"></i> Castrado <br>
+                                        {% endif %}
+                                    {% endif %}
+                                </h5>
+                            </div>
+                            <div class="card-footer bg-info text-center"><h6><i class="fas fa-info-circle"></i> ¿Quiere
+                                saber más?</h6></div>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3 style="color: white">No existe perros en Adopcion registrados</h3>
+
+    {% endif %}
+
+{% endblock %}

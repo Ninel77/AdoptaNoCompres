@@ -1,0 +1,39 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+{% block lista %}
+    <table class="table  text-nowrap" id="example">
+        <thead>
+        <tr>
+            <th scope="col">Nro</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Carnet</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Organizacion</th>
+            <th scope="col">fecha Inicio</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Editar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for voluntario in object_list %}
+            <tr>
+                <td>{{ voluntario.id }}</td>
+                <td>{{ voluntario.user.persona.Nombre }}</td>
+                <td>{{ voluntario.user.persona.Apellido }}</td>
+                <td>{{ voluntario.user.persona.Carnet }} ({{ organizador.user.persona.Extencion }})</td>
+                <td>{{ voluntario.user.persona.Celular }}</td>
+                <td>{{ voluntario.user.email }}</td>
+                <td>{{ voluntario.Organizacion.nomorganizacion}}</td>
+                <td>{{ voluntario.fecha_inicio}}</td>
+                <td>{{ voluntario.user.is_active}}</td>
+                <td>
+                    <a href="{% url 'userLog:org:ActVol' voluntario.id %}" type="button"
+                       class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

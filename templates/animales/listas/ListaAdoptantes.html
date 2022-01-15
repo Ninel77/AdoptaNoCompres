@@ -1,0 +1,32 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+{% block thead %}
+    <tr>
+        <th scope="col">Carnet</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Ocupacion</th>
+        <th scope="col">Tipo de Vivienda</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Editar</th>
+    </tr>
+
+{% endblock %}
+{% block tbody %}
+    {% for adoptante in object_list %}
+        <tr>
+            <td>{{ adoptante.persona.Carnet }} {{ adoptante.persona.Extencion }}</td>
+            <td>{{ adoptante.persona.Nombre }} {{ adoptante.persona.Apellido }}</td>
+            <td>{{ adoptante.persona.Fecha_Nac }}</td>
+            <td>{{ adoptante.persona.Celular }}</td>
+            <td>{{ adoptante.ocupacion }}</td>
+            <td>{{ adoptante.tipo_vivienda }}</td>
+            <td>{{ adoptante.estado }}</td>
+            <td>
+                <a href="{% url 'animal:detAdoptante' adoptante.id %}" type="button"
+                   class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

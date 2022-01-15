@@ -1,0 +1,67 @@
+{% extends 'base/baseForm2colV2.html' %}
+{% load static %}
+{% block cancelar %}
+    <a href="{% url 'animal:detDatAnim' slug %}" type="button"
+       class="btn btn-block btn-danger">{{ accion2 }}</a>
+{% endblock %}
+
+{% block errores %}
+    {% if form.errors %}
+        <div class="bg-danger">
+            {% for field1 in form %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrin %}
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.situacion.label_tag }}</div>
+            <div class="col-md-8">{{ form.situacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.nombre.label_tag }}</div>
+            <div class="col-md-8">{{ form.nombre }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.especie.label_tag }}</div>
+            <div class="col-md-8">{{ form.especie }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.raza.label_tag }}</div>
+            <div class="col-md-8">{{ form.raza }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.tamano.label_tag }}</div>
+            <div class="col-md-8">{{ form.tamano }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.sexo.label_tag }}</div>
+            <div class="col-md-8">{{ form.sexo }}</div>
+        </div>
+    </div>
+{% endblock %}
+{% block formSec %}
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.color1.label_tag }}</div>
+            <div class="col-md-8">{{ form.color1 }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.color2.label_tag }}</div>
+            <div class="col-md-8">{{ form.color2 }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.fechaNaci.label_tag }}</div>
+            <div class="col-md-8">{{ form.fechaNaci }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 ">{{ form.descripcion.label_tag }}</div>
+            <div class="col-md-8">{{ form.descripcion }}</div>
+        </div>
+    </div>
+{% endblock %}

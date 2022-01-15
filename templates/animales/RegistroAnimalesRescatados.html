@@ -1,0 +1,307 @@
+{% extends 'base/baseForm3partesV2.html' %}
+{% load static %}
+
+{% block errores %}
+    {% if form.errors %}
+        <div class="bg-danger">
+            {% for field1 in form %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form2.errors %}
+        <div class="bg-danger">
+            {% for field1 in form2 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrim %}
+    <div class="card-body">
+        {% for field1 in form1 %}
+            <div class="form-group row">
+                <div class="col-md-4 ">
+                    {{ field1.label_tag }}
+                </div>
+                <div class="col-md-8">
+                    <div class="">
+                        {{ field1 }}
+                    </div>
+                    <div class="">
+                        {% for error1 in field1.errors %}
+                            <span style="color: red">({{ error1 }})</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <hr>
+{% endblock %}
+
+{% block formSec %}
+    <div class="form-group row mr-3">
+        <div class="col-md-5 col-sm-5">{{ form.Fecha_Rescate.label_tag }}</div>
+        <div class="col-md-7 col-sm-7">{{ form.Fecha_Rescate }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 col-md-5"><b>{{ form.tipoIngreso.label_tag }}</b></div>
+        <div class="col-sm-7 col-md-7 text-right"><b>{{ form.tipoIngreso }}</b></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 col-sm-4"><b>Ingrese la edad aproximada</b></div>
+        <div class="col-md-6 col-sm-4">
+            <div class="row">
+                <div class="col-md-5"><b>{{ form.edadAnos.label_tag }}</b></div>
+                <div class="col-md-5">{{ form.edadAnos }}</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-4">
+            <div class="row">
+                <div class="col-md-5"><b>{{ form.edadMeses.label_tag }}</b></div>
+                <div class="col-md-5">{{ form.edadMeses }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row mr-3">
+        <div class="col-md-6">{{ form.fotoRescate.label_tag }}</div>
+        <div class="">{{ form.fotoRescate }}</div>
+    </div>
+    <div class="form-group row mr-1">
+        <div class="">{{ form.descripcionRescate.label_tag }} </div>
+        <div class="col-md-12">{{ form.descripcionRescate }}</div>
+    </div>
+{% endblock %}
+
+{% block formSecP2 %}
+    <div style="line-height: 80%;">
+        <div class="row ml-2 mt-1">
+            <div class="col-md-7 col-sm-6 text-uppercase"> {{ form2.tipoAlim.label_tag }} </div>
+            <div class="col-md-5 col-sm-6">{{ form2.tipoAlim }}</div>
+        </div>
+    </div>
+    <hr>
+    <div class="text-center"><b>ENFERMEDADES</b></div>
+    <hr>
+    <div style="line-height: 80%;">
+        <div class="row ml-2 mt-1">
+            <div class="row col-md-6 col-sm-3"> {{ form2.moquillo }}
+                <div class="ml-2">{{ form2.moquillo.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.parvovirus }}
+                <div class="ml-2">{{ form2.parvovirus.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.rabia }}
+                <div class="ml-2">{{ form2.rabia.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.cutaneaos }}
+                <div class="ml-2">{{ form2.cutaneaos.label }}</div>
+            </div>
+        </div>
+        <div class="row ml-2 mt-1">
+            <div class="row col-md-6 col-sm-3"> {{ form2.parasitos }}
+                <div class="ml-2 ">{{ form2.parasitos.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.desnutricion }}
+                <div class="ml-2">{{ form2.desnutricion.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.Depresion }}
+                <div class="ml-2">{{ form2.Depresion.label }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-3"> {{ form2.Ansiedad }}
+                <div class="ml-2">{{ form2.Ansiedad.label }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">{{ form2.masInfoEnfer.label_tag }}</div>
+    <div>{{ form2.masInfoEnfer }}</div>
+    <hr>
+    <div class="text-center"><b>INFORMACIÓN ACERCA DEL ESTADO REPRODUCTIVO</b></div>
+    <hr>
+    <div style="line-height: 80%;">
+        <div class="row ml-3">
+            <div class="row"> {{ form2.esterilizacion.label_tag }}
+                <div class="ml-4"><b>{{ form2.esterilizacion }}</b></div>
+            </div>
+        </div>
+        <div class="row ml-2 mt-1">
+            <div class="row col-md-6 col-sm-6"> {{ form2.fechaEster.label_tag }}
+                <div class="ml-4">{{ form2.fechaEster }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-6"> {{ form2.codigoEster.label_tag }}
+                <div class="ml-2">{{ form2.codigoEster }}</div>
+            </div>
+        </div>
+        <div class="row ml-3 mt-3">
+            <div class="row"> {{ form2.gestacion.label_tag }}
+                <div class="ml-4"><b>{{ form2.gestacion }}</b></div>
+            </div>
+        </div>
+        <div class="mt-1 ml-2">{{ form2.infoGesta.label_tag }}</div>
+        <div>{{ form2.infoGesta }}</div>
+        <div class="row ml-3 mt-2">
+            <div class="row"> {{ form2.lactancia.label_tag }}
+                <div class="ml-4"><b>{{ form2.lactancia }}</b></div>
+            </div>
+        </div>
+        <div class="mt-1 ml-2">{{ form2.infoLac.label_tag }}</div>
+        <div>{{ form2.infoLac }}</div>
+    </div>
+
+    <hr>
+{% endblock %}
+
+{% block formTer %}
+    <div class="text-center"><b>ACERCA DE LA SOCIALIZACION</b></div>
+    <div class="bg-success">Si el animal de compañia no es apto para convivir con cierto criterio a continuacion
+        deseleccione el campo correspondiente.
+    </div>
+    <hr>
+    <div style="line-height: 90%;">
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con NIÑOS MENORES?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probCNinosMenores }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con ADOLECENTES?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probCAdol }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con JOVENES?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probCjovenes }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con ADULTOS?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probCAdultos }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con ADULTOS MAYORES?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probCAdultosM }}
+            </div>
+        </div>
+        <hr>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con personas del genero FEMENINO?
+            </div><div class="col-1"></div>
+            <div class="col-2 font-weight-bold text-center">
+               {{ form2.probMujeres }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con personas del genero MASCULINO?
+            </div><div class="col-1"></div>
+            <div class="col-2 mt-3 font-weight-bold text-center">
+               {{ form2.probHombres }}
+            </div>
+        </div>
+        <hr>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con otro(s) CAN(ES) (PERROS)?
+            </div><div class="col-1"></div>
+            <div class="col-2 mt-3 font-weight-bold text-center">
+               {{ form2.probSocialPerros }}
+            </div>
+        </div>
+        <div class="row ml-1 mb-2">
+            <div class="col-9 font-weight-bold">
+                ¿Es apto para convivir con otro(s) FELINO(S) (GATOS)?
+            </div><div class="col-1"></div>
+            <div class="col-2 mt-3 font-weight-bold text-center">
+               {{ form2.probSocialGatos }}
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div style="line-height: 90%;">
+        {{ form2.masInfoProbSoc.label_tag }}
+        <div>{{ form2.masInfoProbSoc }}</div>
+    </div>
+    <hr>
+    <div class="text-center"><b>ACERCA DE LAS DISCAPACIDADES</b></div>
+    <hr>
+    <div style="line-height: 80%;">
+        <div class="row ml-2">
+            <div class="row col-md-6 col-sm-6"> {{ form2.discapacidad }}
+                <div class="ml-4"><b>{{ form2.discapacidad.label }}</b></div>
+            </div>
+            <div class="row col-md-6 col-sm-6"> {{ form2.Tipodiscapacidad.label_tag }}
+                <div class="ml-2">{{ form2.Tipodiscapacidad }}</div>
+            </div>
+        </div>
+    </div>
+    <div>{{ form2.masInfoDisca.label_tag }}</div>
+    <div>{{ form2.masInfoDisca }}</div>
+    <hr>
+    <div class="text-center"><b>INFORMACIÓN ACERCA DE LAS VACUNAS</b></div>
+    <hr>
+    <div style="line-height: 90%;">
+        <div class="row ml-2 mt-1">
+            <div class="row col-md-6 col-sm-6"> {{ form2.tipoVacuna.label_tag }}
+                <div class="ml-2">{{ form2.tipoVacuna }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaV.label_tag }}
+                <div class="ml-2">{{ form2.ultimaFechaV }}</div>
+            </div>
+        </div>
+        <div class="row ml-2 mt-2">
+            <div class="row col-md-6 col-sm-6"> {{ form2.vacAntirrabica.label_tag }}
+                <div class="ml-4">{{ form2.vacAntirrabica }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaReb.label_tag }}
+                <div class="ml-2">{{ form2.ultimaFechaReb }}</div>
+            </div>
+        </div>
+        <div class="mt-1">{{ form2.masInfoVac.label_tag }}</div>
+        <div>{{ form2.masInfoVac }}</div>
+    </div>
+    <hr>
+    <div class="text-center"><b>INFORMACIÓN ACERCA DE LAS DESPARASITACIONES</b></div>
+    <hr>
+    <div style="line-height: 80%;">
+        <div class="row ml-2 mt-1">
+            <div class="row col-md-6 col-sm-6"> {{ form2.desparacitacion.label_tag }}
+                <div class="ml-4">{{ form2.desparacitacion }}</div>
+            </div>
+            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaDes.label_tag }}
+                <div class="ml-2">{{ form2.ultimaFechaDes }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-1">{{ form2.masInfoDes.label_tag }}</div>
+    <div>{{ form2.masInfoDes }}</div>
+    <hr>
+    <div class="text-center"><b>MAS INFORMACIÓN</b></div>
+    <hr>
+    <div class="mt-1 ml-2">{{ form2.descripcionEval.label_tag }}</div>
+    <div>{{ form2.descripcionEval }}</div>
+    <hr>
+{% endblock %}

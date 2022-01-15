@@ -1,0 +1,77 @@
+{% load static %}
+<div class="content-header text-center" style="color:white">
+    <h2>Bienvenido {{ user.username }}
+        <h4> {{ user.rol}}</h4>
+        <h2>{{ user.voluntario_perfil.Organizacion }}</h2>
+    </h2>
+</div>
+<div class="row">
+    <div class="col-md-5" style="max-height:40%">
+        <div class="card card-header bg-white mt-1 text-uppercase"><b>Mision del Encargado de la Organización</b></div>
+        <div class="card card-body">
+            <img src="{% static 'img/Materialinfo/misionVoluntario.png' %}" style="object-fit: cover">
+        </div>
+    </div>
+    <div class="col-md-7" style="max-height:50%">
+        <div class="card card-header bg-white text-uppercase mt-1"><b>Accedes a:</b></div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="">
+                    <div class="card card-body">
+                        <div class="card-title">Lista de los Animales de Compañia</div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">
+                            En esta lista se encuentra todos los animales de compañia que se han registrado
+                            dentro de la organización
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="">
+                    <div class="card card-body">
+                        <div class="card-title">Lista de los Adoptantes</div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">
+                            En esta lista se encuentra todos las personas que son o han sido adoptantes,
+                            mostrando sus datos y estado (Buen adoptante o Mal adoptante)
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="">
+                    <div class="card card-body">
+                        <div class="card-title">Registrar a los Animales de compañia</div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">
+                            Se registra los datos del animal de compañia, cuando el animal de compañia
+                            ingresa por primera vez, su estado predeterminado es en rehabilitacion.
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="">
+                    <div class="card card-body">
+                        <div class="card-title">Registrar Adopciones</div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">
+                            Se registra la adopcion del animal de compañia, para realizar este proceso se
+                            actualiza los datos del animal de compañia, se registra los datos del adoptante y
+                            se registra los documentos que se requiere para realizar la adopcion.
+                            El adoptante debe ser mayor de edad.
+                        </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

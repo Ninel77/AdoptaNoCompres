@@ -1,0 +1,31 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+{% block thead %}
+    <tr>
+        <th scope="col" class="align-middle">Codigo</th>
+        <th scope="col" class="align-middle">Nombre</th>
+        <th scope="col" class="align-middle">Edad</th>
+        <th scope="col" class="align-middle">Raza</th>
+        <th scope="col" class="align-middle">Nombre Santuario</th>
+        <th scope="col" class="align-middle text-wrap">Fecha ingreso al Santuario</th>
+        <th scope="col" class="align-middle">Editar</th>
+    </tr>
+
+
+{% endblock %}
+{% block tbody %}
+    {% for animales in object_list %}
+        <tr>
+            <td>{{ animales.animal.slug }}</td>
+            <td>{{ animales.animal.nombre }}</td>
+            <td>{{ animales.Edad }}</td>
+            <td>{{ animales.animal.raza.raza }}</td>
+            <td>{{ animales.nombreSantuario }}</td>
+            <td>{{ animales.fechaIngresoSan }}</td>
+            <td>
+                <a href="{% url 'animal:detDatAnim(Sant)' animales.slug %}" type="button"
+                   class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

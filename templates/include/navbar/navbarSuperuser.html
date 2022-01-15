@@ -1,0 +1,49 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light navbar-white ">
+    <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse order-3 nav-fill" id="navbarCollapse">
+        <!-- Left navbar links -->
+        <ul class="nav nav-tabs navbar-nav font-weight-bold text-uppercase">
+            <li class="nav-item">
+                <a href="{% url 'index' %}" class="nav-link"><i class="fas fa-home"></i>
+                    Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'userLog:superuser:ListaOrg' %}" class="nav-link">
+                    <i class="fas fa-list-ul"></i>Organizaciones</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'userLog:superuser:ListaEnOrg' %}" class="nav-link">
+                    <i class="fas fa-list-ul"></i>Encargados de Organizaciones</a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/" class="nav-link"><i class="fas fa-home"></i>
+                    Interfaz Completa Admin</a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link"><i class="fas fa-home"></i>
+                    Reportes</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Right navbar links -->
+    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item">
+            <a href="{% url 'userLog:superuser:perfil' request.user.SuperUser_perfil.id %}"
+               class="nav-link font-weight-bold"><i class="fas fa-user-alt"></i>Bienvenido {{ request.user.username }}
+                - ({{ request.user.rol }})</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'Logout' %}" class="nav-link"><i class="fas fa-sign-in-alt"></i></a>
+        </li>
+
+    </ul>
+</nav>
+<!-- /.navbar -->

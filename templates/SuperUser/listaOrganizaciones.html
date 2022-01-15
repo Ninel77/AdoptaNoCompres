@@ -1,0 +1,31 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+
+{% block thead %}
+    <tr>
+        <th scope="col">Nombre de la organización</th>
+        <th scope="col">Fecha Creacion</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Facebook</th>
+        <th scope="col">Contacto Principal</th>
+        <th scope="col">Editar</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for organizacion in object_list %}
+        <tr>
+            <td>{{ organizacion.nomorganizacion }}</td>
+            <td>{{ organizacion.fechaCreacion }}</td>
+            <td>{{ organizacion.correo }}</td>
+            <td><a href="{{ organizacion.facebook }}"
+                   target="_blank"> {{ organizacion.nomorganizacion }} </a></td>
+            <td>{{ organizacion.whatsapp }} - {{ organizacion.nombreContacto }}</td>
+            <td>
+                <a href="{% url 'userLog:superuser:ActOrg' organizacion.id %}" type="button"
+                   class="btn btn-primary btn-xs"><i class="fas fa-edit"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h5>{{ titulo }}</h5>
+    </div>
+    {% if not mensajeEdad %}
+        <div class="alert alert-danger mt-2" role="alert">
+            {{ mensaje }}
+        </div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-2 ml-2 mt-2 mr-2 bg bg-light">
+            {% block formPrin %}
+            {% endblock %}
+        </div>
+        <button class="btn btn-block btn-success mt-3" type="submit">{{ accion }}</button>
+    </form>
+{% endblock %}

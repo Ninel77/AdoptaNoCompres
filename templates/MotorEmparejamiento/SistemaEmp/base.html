@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    {% if entity_anterior %}
+        <li class="breadcrumb-item font-weight-bold"><a href="{{ entity_anterior_url }}">{{ entity_anterior }}</a></li>
+    {% endif %}
+    <li class="breadcrumb-item "><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+
+{% block contenido %}
+    <hr>
+    <div class="card-header bg-primary">
+        <h1 class="card-title text-uppercase font-weight-bold text-xl">{{ titulo }}</h1>
+    </div>
+    <div class="row container mt-3 ml-1">
+        <div class="col-12">
+            <ul class="nav nav-pills nav-fill mb-3 text-uppercase" id="pills-tab" role="tablist"
+                style="background-color: #e3f2fd;">
+                <li class="nav-item">
+                    <a class="nav-link active btn btn-block" id="pills-uno-tab" data-toggle="pill"
+                       href="#pills-uno"
+                       role="tab"
+                       aria-controls="pills-uno" aria-selected="true"><b>{{ tituloUno }}</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-block" id="pills-dos-tab" data-toggle="pill"
+                       href="#pills-dos"
+                       role="tab"
+                       aria-controls="pills-dos" aria-selected="false"><b>{{ tituloDos }}</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-block" id="pills-tres-tab" data-toggle="pill"
+                       href="#pills-tres"
+                       role="tab"
+                       aria-controls="pills-tres" aria-selected="false"><b>{{ tituloTres }}</b></a>
+                </li>
+                {% if tituloCuatro %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block" id="pills-cuatro-tab" data-toggle="pill"
+                           href="#pills-cuatro"
+                           role="tab"
+                           aria-controls="pills-cuatro" aria-selected="false"><b>{{ tituloCuatro }}</b></a>
+                    </li>
+                {% endif %}
+
+            </ul>
+            <hr>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-uno" role="tabpanel"
+                     aria-labelledby="pills-uno-tab">
+                    {% block filtrosuno %}
+
+                    {% endblock %}
+                    {% block listaUno %}
+
+                    {% endblock %}
+                </div>
+                <div class="tab-pane fade" id="pills-dos" role="tabpanel"
+                     aria-labelledby="pills-dos-tab">
+                    {% block filtrodos %}
+
+                    {% endblock %}
+                    {% block listaDos %}
+
+                    {% endblock %}
+                </div>
+                <div class="tab-pane fade" id="pills-tres" role="tabpanel"
+                     aria-labelledby="pills-tres-tab">
+                    {% block filtrotres %}
+
+                    {% endblock %}
+                    {% block listatres %}
+
+                    {% endblock %}
+                </div>
+
+                {% if tituloCuatro %}
+                    <div class="tab-pane fade" id="pills-cuatro" role="tabpanel"
+                         aria-labelledby="pills-cuatro-tab">
+
+                        {% block filtroCuatro %}
+
+                        {% endblock %}
+                        {% block listaCuatro %}
+
+                        {% endblock %}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <hr>
+
+{% endblock %}

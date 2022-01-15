@@ -1,0 +1,50 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+
+{% block tituloPerfil %}
+    <div class="row">
+        <div class="col-md-10">
+            <p>{{ animal.nombre }} - {{ animal.organizacion.nomorganizacion }}</p>
+        </div>
+        <div class="col-md-2">
+            <h6 class="text-left">Codigo: {{ animalResc.slug }}</h6>
+        </div>
+    </div>
+{% endblock %}
+
+{% block nav %}
+    <nav class="navbar navbar-light mt-2" style="background-color: #e3f2fd; ">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+               aria-controls="nav-home" aria-selected="true"><b>DATOS BASICOS</b> </a>
+            <a class="nav-item nav-link" id="nav-ingreso-tab" data-toggle="tab" href="#nav-ingreso" role="tab"
+               aria-controls="nav-ingreso" aria-selected="false"><b>DATOS DE INGRESO</b> </a>
+            <a class="nav-item nav-link" id="nav-rehab-tab" data-toggle="tab" href="#nav-rehab" role="tab"
+               aria-controls="nav-rehab" aria-selected="false"><b>DATOS DE LA REHABILITACION </b> </a>
+            <a class="nav-item nav-link" id="nav-paraAdopcion-tab" data-toggle="tab" href="#nav-paraAdopcion" role="tab"
+               aria-controls="nav-paraAdopcion" aria-selected="false"><b>DATOS PARA ADOPCIÓN </b> </a>
+            <a class="nav-item nav-link" id="nav-adopcion-tab" data-toggle="tab" href="#nav-adopcion" role="tab"
+               aria-controls="nav-adopcion" aria-selected="false"><b>DATOS DE ADOPCIÓN </b> </a>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block InfoPerfil %}
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            {% include 'animales/detalles/datosBasicos.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-ingreso" role="tabpanel" aria-labelledby="nav-ingreso-tab">
+            {% include 'animales/detalles/ingreso.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-rehab" role="tabpanel" aria-labelledby="nav-rehab-tab">
+            {% include 'animales/detalles/rehabilitacion.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-paraAdopcion" role="tabpanel" aria-labelledby="nav-paraAdopcion-tab">
+            {% include 'animales/detalles/paraAdopcion.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-adopcion" role="tabpanel" aria-labelledby="nav-adopcion-tab">
+            {% include 'animales/detalles/adopcion.html' %}
+        </div>
+    </div>
+{% endblock %}

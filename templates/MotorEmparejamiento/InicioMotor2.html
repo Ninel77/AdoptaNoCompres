@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!--<div class="container bg-light"> -->
+{% block entity %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+
+{% block contenido %}
+    <hr>
+    <div class="card card-primary" style="background-color: #043c75">
+        <div class="card-header">
+            <div class="text-center tit font-weight-bold text-uppercase text-xl">{{ titulo }}</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-header bg-light">
+                        <div class="tit font-weight-bold text-uppercase">Informacion</div>
+                    </div>
+                    <div class="card card-body">
+                        <video src="{% static 'img/gif/InfoMotor2.mp4' %}" style="object-fit: cover" autoplay muted
+                               loop></video>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-header bg-light">
+                        <div class="tit font-weight-bold text-uppercase">Tipos de emparejamiento</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="{% url 'motor:InfoAlg' %}">
+                                {% if not request.user.rol == 'Usuario Registrado' %}
+                                    <div class="ribbon-wrapper ribbon-xl">
+                                        <div class="ribbon text-lg bg-danger font-weight-bold">
+                                            Disponible al registrarse
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="card card-body">
+                                    <img src="{% static 'img/Materialinfo/AlgEmp2.png' %}" style="object-fit: cover">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <a href="{% url 'motor:InfoSis' %}">
+                                {% if not request.user.rol == 'Usuario Registrado' %}
+                                    <div class="ribbon-wrapper ribbon-xl">
+                                        <div class="ribbon text-lg bg-danger font-weight-bold">
+                                            Disponible al registrarse
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="card card-body">
+                                    <img src="{% static 'img/Materialinfo/SisRec2.png' %}" style="object-fit: cover">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+
+{% endblock %}

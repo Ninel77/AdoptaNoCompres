@@ -1,0 +1,246 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item font-weight-bold"><a href="{{ entity_reverse_url }}">{{ entity_reverse }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+
+{% block tituloPerfil %}
+    <div class="card-header col-12">
+        <div class="ribbon-wrapper ribbon-xl">
+            <div class="ribbon text-lg bg-success font-weight-bold">
+                {{ animalenAdop.animal.estado }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <img src="{{ animalenAdop.animal.organizacion.fotografia.url }}"
+                     width="auto" height="100">
+            </div>
+            <div class="col-9 card-body">
+                <h4 class="text-center">{{ animalenAdop.animal.nombre }} </h4>
+                <h4 class="text-center text-md">{{ animalenAdop.animal.organizacion.nomorganizacion }}</h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block InfoPerfil %}
+    <div class="row container">
+        <div class="col-md-4 col-sm-4 text-uppercase font-weight-bold">
+            <div class="card">
+                <h4 class="card-header bg-info text-uppercase text-lg">Fotografia
+                    de {{ animalenAdop.animal.nombre }}:</h4>
+            </div>
+            <div class="align-middle card-img">
+                {% if  animalenAdop.fotoEnAdopcion %}
+                    <img class="img-fluid rounded mx-auto d-block"
+                         style="width: auto; height: 350px"
+                         src="{{ animalenAdop.fotoEnAdopcion.url }}"/>
+                {% else %}
+                    <p class="text-white">No se cargo correctamente la imagen</p>
+                {% endif %}
+            </div>
+            <hr class="border border-white">
+            <div class="card">
+                <h6 class="card-header bg-info text-uppercase font-weight-bold">Contacto de la organización</h6>
+            </div>
+            <div class="card-body bg-white font-weight-bold">
+                <div>
+                    <h6>Nombre de la organizacion: </h6>
+                    <p class="text-right">{{ animalenAdop.animal.organizacion.nomorganizacion }}</p>
+                </div>
+                <div>
+                    <h6>Contactos de Referencia: </h6>
+                    <p class="text-right">
+                        {{ animalenAdop.animal.organizacion.whatsapp }}
+                        - {{ animalenAdop.animal.organizacion.nombreContacto }} <br>
+                        {{ animalenAdop.animal.organizacion.contacto2 }}
+                        - {{ animalenAdop.animal.organizacion.nombreContacto2 }}
+                    </p>
+                </div>
+                <div>
+                    <h6>Facebook: </h6>
+                    <p class="text-right">
+                        <a href="{{ animalenAdop.animal.organizacion.facebook }}">
+                            {{ animalenAdop.animal.organizacion.nomorganizacion }}</a>
+                    </p>
+                </div>
+                {% if animalenAdop.animal.organizacion.otraRedSocial %}
+                    <div>
+                        <h6>Otra red social: </h6>
+                        <p class="text-right">
+                            <a href="{{ animalenAdop.animal.organizacion.otraRedSocial }}">
+                                {{ animalenAdop.animal.organizacion.nomorganizacion }}</a>
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+            <hr class="border border-white">
+        </div>
+        <div class="col-md-8 col-sm-8">
+            <h4 class="text-center text-white text-uppercase">Datos del Animal</h4>
+            <hr class="border border-white">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="card card-body">
+                        <div class="row text-uppercase ">
+                            <p class="font-weight-bold">Nombre del animal:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.animal.nombre }}</p>
+                        </div>
+                        <div class="row text-uppercase ">
+                            <p class="font-weight-bold">Edad:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.edad_Anim }}</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.Edad }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Raza:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.animal.raza.raza }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="card card-body text-uppercase">
+                        <div class="row">
+                            <p class="font-weight-bold text-uppercase">Especie:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.animal.especie }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Sexo:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.animal.sexo }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Tamaño:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ animalenAdop.animal.tamano }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="border border-white">
+            {% if animalenAdop.desCaracter and animalenAdop.desOrigen %}
+                <div class="row">
+                    <div class="col-md-6 font-weight-bold">
+                        <div class="bg-info card card-header text-uppercase">
+                            Descripcion del caracter:
+                        </div>
+                        <div class="card" style="border-width: 5px; border-color:#00e765">
+                            <p class="text-justify card-body">
+                                {{ animalenAdop.desCaracter }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 font-weight-bold ">
+                        <div class="bg-info card card-header text-uppercase">
+                            Descripcion del rescate y/u origen
+                        </div>
+                        <div class="card" style="border-width: 5px; border-color:#00e765">
+                            <p class="text-justify card-body">
+                                {{ animalenAdop.desOrigen }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if not animalenAdop.desCaracter and animalenAdop.desOrigen %}
+                <div class="row font-weight-bold">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 ">
+                        <div class="bg-info card card-header text-uppercase">
+                            Descripcion del rescate y/u origen
+                        </div>
+                        <div class="card" style="border-width: 5px; border-color:#00e765">
+                            <p class="text-justify card-body">
+                                {{ animalenAdop.desOrigen }}</p>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            {% endif %}
+            {% if animalenAdop.desCaracter and not animalenAdop.desOrigen %}
+                <div class="row font-weight-bold">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="bg-info card card-header text-uppercase">
+                            Descripcion del caracter:
+                        </div>
+                        <div class="card" style="border-width: 5px; border-color:#00e765">
+                            <p class="text-justify card-body">
+                                {{ animalenAdop.desCaracter }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            {% endif %}
+            <hr class="border border-white">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Vacuna Antirrabica</h6>
+                    {% if animalenAdop.datosMedicos.vacAntirrabica %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Desparacitacion</h6>
+                    {% if animalenAdop.datosMedicos.desparacitacion %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Esterilizado</h6>
+                    {% if animalenAdop.datosMedicos.esterilizacion %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Apto para vivir con niños menores</h6>
+                    {% if animalenAdop.datosMedicos.probCNinosMenores %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Algun tipo de discapacidad</h6>
+                    {% if animalenAdop.datosMedicos.discapacidad %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                {% if animalenAdop.datosMedicos.discapacidad %}
+                    <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                        <h6 class="text-md text-uppercase text-md">tipo de diacapacidad</h6>
+                        <h6 class="text-md text-uppercase font-weight-bold text-xl">{{ animalenAdop.datosMedicos.Tipodiscapacidad }}</h6>
+                    </div>
+                {% endif %}
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Dificultad para convivir con otro(s)
+                        can(es) (perros)</h6>
+                    {% if animalenAdop.datosMedicos.probSocialPerros %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+                <div class="col-md-3 col-sm-3 text-center card " style="border-width: 3px; border-color:#043c75">
+                    <h6 class="text-md text-uppercase font-weight-bold text-md">Dificultad para convivir con otro(s)
+                        Felino(s) (Gatos)</h6>
+                    {% if animalenAdop.datosMedicos.probSocialGatos %}
+                        <i class="far fa-check-circle text-xl" style="color: forestgreen"></i>
+                    {% else %}<i class="fas fa-times-circle text-xl" style="color:red;"></i>
+                    {% endif %}
+                </div>
+            </div>
+            <hr class="border border-white">
+        </div>
+    </div>
+{% endblock %}

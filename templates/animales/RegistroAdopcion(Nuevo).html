@@ -1,0 +1,276 @@
+{% extends 'base/baseForm5partes.html' %}
+{% load static %}
+
+{% block errores %}
+    {% if  form.errors %}
+        <p><b>{{ tituloTer }} </b></p>
+        <div class="card card-danger">
+            {% for error in form.errors %}
+                <li><span style="color: red">{{ error.label_tag }}({{ error }})</span></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if  form1.errors %}
+        <p><b>{{ tituloCuar }} </b></p>
+        <div class="card card-danger">
+            {% for error in form1.errors %}
+                <li><span style="color: red">{{ error.label_tag }}({{ error }})</span></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if  form3.errors %}
+        <p><b>{{ tituloSec }} </b></p>
+        <div class="card card-danger">
+            {% for error in form3.errors %}
+                <li><span style="color: red">{{ error.label_tag }}({{ error }})</span></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if  form4.errors %}
+        <p><b>{{ tituloSec }} </b></p>
+        <div class="card card-danger">
+            {% for error in form4.errors %}
+                <li><span style="color: red">{{ error.label_tag }}({{ error }})</span></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if  form5.errors %}
+        <p><b>{{ tituloPrim }} </b></p>
+        <div class="card card-danger">
+            {% for error in form5.errors %}
+                <li><span style="color: red">{{ error.label_tag }}({{ error }})</span></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrim %}
+    <div class="card-body">
+        {% for field1 in form1 %}
+            <div class="form-group row">
+                <div class="col-md-4 ">
+                    {{ field1.label_tag }}
+                </div>
+                <div class="col-md-8">
+                    <div class="">
+                        {{ field1 }}
+                    </div>
+                    <div class="">
+                        {% for error1 in field1.errors %}
+                            <span style="color: red">({{ error1 }})</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block formSec %}
+    <div class="card-body ">
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.vacOctovalente.label_tag }}</div>
+            <div class="col-md-2">{{ form5.vacOctovalente }}</div>
+        </div>
+
+        <div class="form-group row ">
+            <div class="col-md-10 ">{{ form5.vacDesparacitacion.label_tag }}</div>
+            <div class="col-md-2">{{ form5.vacDesparacitacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.vacAntirrabica.label_tag }}</div>
+            <div class="col-md-2">{{ form5.vacAntirrabica }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.esterilizacion.label_tag }}</div>
+            <div class="col-md-2">{{ form5.esterilizacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.Depresion.label_tag }}</div>
+            <div class="col-md-2">{{ form5.Depresion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.Ansiedad.label_tag }}</div>
+            <div class="col-md-2">{{ form5.Ansiedad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form5.discapacidad.label_tag }}</div>
+            <div class="col-md-2">{{ form5.discapacidad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-8 ">{{ form5.Tipodiscapacidad.label_tag }}</div>
+            <div class="col-md-4">{{ form5.Tipodiscapacidad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 "><b>¿Es apto para convivir con niños menores?</b></div>
+            <div class="col-md-2 mt-3">{{ form5.probCNinosMenores }}</div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con personas?</b>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form5.probCAdultosM }} <small class="ml-2"> Adultos Mayores<br></small>
+                </div>
+                <div class="row col-md-6">{{ form5.probCAdultos }} <small class="ml-2"> Adultos<br></small></div>
+            </div>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form5.probCjovenes }} <small class="ml-2">Jovenes<br></small></div>
+                <div class="row col-md-6">{{ form5.probCAdol }} <small class="ml-2">Adolecentes<br></small></div>
+            </div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con Algun genero?</b>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form5.probMujeres }} <small class="ml-2"> Mujer<br></small></div>
+                <div class="row col-md-6">{{ form5.probHombres }} <small class="ml-2"> Hombre<br></small></div>
+            </div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con otro animal?</b>
+            <div class="row ml-2">
+                <div class="row col-md-4">{{ form5.probSocialPerros }} <small class="ml-2"> Perros<br></small></div>
+                <div class="row col-md-4">{{ form5.probSocialGatos }} <small class="ml-2"> Gatos<br></small></div>
+                <div class="row col-md-4">{{ form5.probSocialOtros }} <small class="ml-2"> Otros<br></small></div>
+            </div>
+        </div>
+
+        <div>{{ form5.descripcionEval.label_tag }}</div>
+        <div>{{ form5.descripcionEval }}</div>
+    </div>
+{% endblock %}
+
+{% block formTer %}
+    <div class="card bg bg-info">
+        <b class="text-center">
+            Informacion del adicional cuando fue puesto en adopcion
+        </b>
+        <div class="card-body">
+            <div> Edad aproximado del animal de compañia:<b class="text-right">
+                <br>{{ form6.Edad }}</b>
+            </div>
+            <div>Fecha:
+                <p class="text-right">{{ form6.fecha_en_Adopcion }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <b>Ingrese la edad aproximada: </b><br>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                {{ form.edadAnos.label_tag }}{{ form.edadAnos }}
+            </div>
+            <div class="input-group-prepend">
+                {{ form.edadMeses.label_tag }}{{ form.edadMeses }}
+            </div>
+        </div>
+        <div class="form-group row mr-3">
+            <div class="col-md-8">{{ form.fotoAdopcion.label_tag }}</div>
+            <div class="">{{ form.fotoAdopcion }}</div>
+        </div>
+        <div class="form-group row mr-1">
+            <div class="">{{ form.descripcionAdop.label_tag }} </div>
+            <div class="col-md-12">{{ form.descripcionAdop }}</div>
+        </div>
+    </div>
+{% endblock %}
+{% block formCuar %}
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Nombre.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Nombre }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Apellido.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Apellido }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Carnet.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Carnet }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Extencion.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Extencion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Genero.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Genero }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Fecha_Nac.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Fecha_Nac }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Celular.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Celular }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form2.ocupacion.label_tag }}</div>
+            <div class="col-md-8">{{ form2.ocupacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form2.tipo_vivienda.label_tag }}</div>
+            <div class="col-md-8">{{ form2.tipo_vivienda }}</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formQuin %}
+    <div class="card-body">
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Departamento.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Departamento }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Ciudad.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Ciudad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Dir_zona.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Dir_zona }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Dir_calleOt.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Dir_calleOt }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Dir_num.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Dir_num }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Edif.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Edif }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">{{ form3.Dep.label_tag }}</div>
+            <div class="col-md-8">{{ form3.Dep }}</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formSex %}
+    <div class="card-body">
+
+        <div class="form-group">
+            <div>{{ form4.docCroquis.label_tag }}</div>
+            <div class="col-md-10">{{ form4.docCroquis }}</div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div>{{ form4.docServicio.label_tag }}</div>
+            <div class="col-md-10">{{ form4.docServicio }}</div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div>{{ form4.docCarnet.label_tag }}</div>
+            <div class="col-md-10">{{ form4.docCarnet }}</div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div>{{ form4.docCompromiso.label_tag }}</div>
+            <div class="col-md-10">{{ form4.docCompromiso }}</div>
+        </div>
+        <hr>
+        <div class="form-group row mr-1">
+            <div class="">{{ form4.descripcion.label_tag }} </div>
+            <div class="col-md-12">{{ form4.descripcion }}</div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base/baseListasImagen.html' %}
+{% load static %}
+
+{% block listadoImg %}
+    {% if object_list %}
+        <div class="row">
+            {% for organizacion in object_list %}
+                <div class="col-md-3">
+                    <a class="button " href="detalleOrg/{{ organizacion.id }}">
+                        <div class="card bg bg-white" style="height: 425px">
+                            <div class="p-3 mb-1 bg-gradient-primary text-white rounded font-weight-bold"
+                                 style="height: 75px; line-height: 80%">
+                                <div class="mt-2 ml-3">
+                                    {{ organizacion.nomorganizacion }}
+                                </div>
+                            </div>
+                            <div class="align-middle">
+                                {% if  organizacion.fotografia %}
+                                    <img class="img-fluid rounded mx-auto d-block"
+                                         style="width: auto; height: 300px"
+                                         src="{{ organizacion.fotografia.url }}"/>
+                                {% else %}
+                                    <p>No se cargo correctamente la imagen</p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer bg-info text-center" style="height: 50px">
+                                <h6><i class="fas fa-info-circle"></i> ¿Quiere saber más?</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4 style="color: white">No existe organizaciones protectoras registradas</h4>
+    {% endif %}
+{% endblock %}

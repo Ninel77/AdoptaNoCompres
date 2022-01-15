@@ -1,0 +1,202 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+
+{% block entity %}
+    <li class="breadcrumb-item text-uppercase font-weight-bold "><a href="{% url 'ListaOrganizaciones' %}">Listado de
+        Organizaciones</a></li>
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+
+{% block tituloPerfil %}
+    <h4 class="text-center card-body">{{ organizacion.nomorganizacion }}</h4>
+{% endblock %}
+
+{% block InfoPerfil %}
+    <div class="row container">
+        <div class="col-md-3 text-uppercase font-weight-bold">
+            <div class="card">
+                <h6 class="card-body text-uppercase">Logo de la Organizacion:</h6>
+            </div>
+            <hr>
+            {% if organizacion.fotografia %}
+                <img class="img-fluid rounded mx-auto d-block"
+                     style="width: auto; height: 350px" src="{{ organizacion.fotografia.url }}"/>
+            {% endif %}
+            <hr>
+            <div class="card">
+                <a class="btn bg-gradient-success btn-block text-white font-weight-bold"
+                   href="{% url 'ListAnimOrg' organizacion.id %}">
+                    Lista de los animales de compañia pertenecientes a la
+                    organizacion</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row  text-uppercase font-weight-bold">
+                <div class="col-md-12 card card-headerd">
+                    <p class="text-center p-2">Descripcion/Informacion Adicional de la organización:</p>
+                </div>
+            </div>
+            <div class="row font-weight-bold">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 card" style="border-width: 5px; border-color:#00e765">
+                    <p class="text-justify">
+                        {{ organizacion.descripcion }}</p>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <hr class="border border-white">
+            <div class="row ">
+                <div class="col-md-6 ">
+                    <div class="card card-body">
+                        <div class="row text-uppercase ">
+                            <p class="font-weight-bold">Nombre de la Organizacion:</p>
+                            <p class="col-md-11 border border-primary rounded font-weight-bold">
+                                {{ organizacion.nomorganizacion }}</p>
+                        </div>
+                        <div class="row text-uppercase ">
+                            <p class="font-weight-bold">Ciudad:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ organizacion.departamento }}, {{ organizacion.ciudad }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Fecha de fundación:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ organizacion.fechaCreacion }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold text-uppercase">Correo:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ organizacion.correo }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="card card-body">
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Facebook:</p>
+                            <p class="col-md-11 border border-primary rounded font-weight-bold">
+                                <a href="{{ organizacion.facebook }}" target="_blank">
+                                    {{ organizacion.nomorganizacion }} </a></p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Otra Red social:</p>
+                            {% if organizacion.otraRedSocial %}
+                                <p class="col-md-11 rounded border border-primary font-weight-bold">
+                                    <a href="{{ organizacion.otraRedSocial }}"
+                                       target="_blank"> {{ organizacion.nomorganizacion }} </a></p>
+                            {% else %}
+                                <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                    NO SE TIENE OTRA RED SOCIAL</p>
+                            {% endif %}
+
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Contacto principal:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ organizacion.whatsapp }} - {{ organizacion.nombreContacto }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Contacto secundario:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ organizacion.contacto2 }} - {{ organizacion.nombreContacto2 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+<div class="card">
+    <div class="card-title text-right"><p class="mt-4 mr-4"><span class="badge badge-pill badge-success">
+            Disponible para Adopcion
+    </p></div>
+    <hr>
+
+    <div class="card-title  text-right">
+        <h3 class="mt-4 mr-4">Datos del Animal</h3>
+    </div>
+    <div class="card card-body ">
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <h6>Nombre del animal:</h6>
+                <h4>{{ animalenAdop.animal.nombre }}</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <h6>Edad:</h6>
+                <h4>{{ animalenAdop.edad_Anim }} -
+                    {{ animalenAdop.edadAnimal }}{{ animalenAdop.tipoedadR }}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <h6>Raza:</h6>
+                <h4>{{ animalenAdop.animal.raza.raza }}</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <h6>Especie:</h6>
+                <h4>{{ animalenAdop.animal.especie }}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <h6>Sexo:</h6>
+                <h4>{{ animalenAdop.animal.sexo }}</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <h6>Tamaño:</h6>
+                <h4>{{ animalenAdop.animal.tamano }}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                {% if animalenAdop.animal.datosMedicos.vacAntirrabica %}
+                    <h6>Vacuna Antirrabica</h6><i class="far fa-check-circle" style="color: forestgreen"></i>
+                {% else %}
+                    <h6>Vacuna Antirrabica</h6><i class="fas fa-times-circle" style="color:red;"></i>
+                {% endif %}
+            </div>
+            <div class="col-md-3 text-center">
+                {% if animalenAdop.animal.datosMedicos.vacDesparacitacion %}
+                    <h6>Desparacitacion</h6><i class="far fa-check-circle" style="color: forestgreen"></i>
+                {% else %}
+                    <h6>Desparacitacion</h6><i class="fas fa-times-circle" style="color:red;"></i>
+                {% endif %}
+            </div>
+            <div class="col-md-3 text-center">
+                {% if animalenAdop.animal.datosMedicos.vacOctovalente %}
+                    <h6>Vacuna Octovalente</h6><i class="far fa-check-circle" style="color: forestgreen"></i>
+                {% else %}
+                    <h6>Vacuna Octovalente</h6><i class="fas fa-times-circle" style="color:red;"></i>
+                {% endif %}
+            </div>
+            <div class="col-md-3 text-center">
+                {% if animalenAdop.animal.datosMedicos.esterilizacion %}
+                    <h6>Esterilizado</h6><i class="far fa-check-circle" style="color: forestgreen"></i>
+                {% else %}
+                    <h6>Esterilizado</h6><i class="fas fa-times-circle" style="color:red;"></i>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h6>Descripcion:</h6>
+            <div class="card-comment">
+                <hr>
+                <h5 class="text-justify mt-4 mr-4 ml-5">
+                    {{ animalenAdop.descripcionEnAdop }}</h5>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+</div>

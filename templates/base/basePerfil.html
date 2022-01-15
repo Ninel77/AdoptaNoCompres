@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block contenido %}
+        <hr>
+        <div class="card-header bg-primary">
+            {% block tituloPerfil %}
+
+            {% endblock %}
+        </div>
+        <div class="mt-2 mb-2">
+            <div class="row card card-header" style="background-color: #e3f2fd;">
+                {% block nav %}
+
+                {% endblock %}
+            </div>
+                {% block InfoPerfil %}
+                {% endblock %}
+        </div>
+
+{% endblock %}

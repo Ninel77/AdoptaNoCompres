@@ -1,0 +1,700 @@
+{% extends 'animales/DetalleAnimal(Nuevo3).html' %}
+{% load static %}
+
+{% block InfoPerfil %}
+    <div class="text-right mt-4">
+        {% if animalAdop == None %}
+            <a href="{% url 'animal:RegistrarAdop' animal.slug %}" type="button"
+               class="btn btn-primary {% if animalEnAdop == None or animalSant != None %} disabled {% endif %}"
+                    {% if animalEnAdop == None or animalSant != None %} aria-disabled="true" {% endif %}>
+                <i class="fas fa-edit"></i> Registrar Adopcion</a>
+        {% else %}
+            <a href="{% url 'animal:ActAdop' animalAdop.id %}" type="button"
+               class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar Registro de Adopcion</a>
+        {% endif %}
+    </div>
+    <hr>
+    {% if animalAdop == None %}
+        {% if animalEnAdop == None %}
+            <div class="alert alert-danger text-uppercase font-weight-bold text-lg">{{ message1 }}</div>
+        {% endif %}
+        <div class="alert alert-danger text-uppercase font-weight-bold text-lg">{{ message2 }}</div>
+        <hr>
+        {% if accion3 == 'Verificar' %}
+            <form method="get" enctype="multipart/form-data">
+                <div class="">
+                    <div class=" card card-body card-white mt-2">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-3 font-weight-bold ">Verificar el estado del adoptante (BUEN
+                                ADOPTANTE/ MAL ADOPTANTE):
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <input type="number" name="carnet"
+                                       placeholder="Ingrese el numero de carnet del adoptante"
+                                       class="form form-control">
+                                <input type="hidden" name="slug" value="{{ animal.slug }}"/>
+                            </div>
+                            <div class="col-md-4 col-sm-3">
+                                <button class="btn btn-block btn-success" type="submit">{{ accion3 }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        {% endif %}
+        <hr>
+        {% if mensaje1 %}
+            <div class="row text-center">
+                <div class="col-md-4 col-sm-4"></div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card text-center" style="width: 30rem;">
+                        <div class="card-header bg-danger">
+                            AVISO
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><b>{{ mensaje1 }} {{ carnetAnt }}</b>
+                                {% if mensaje2 %}
+                                    {{ mensaje2 }}
+                                {% endif %}</p>
+                            {% if bc == False %}
+                                <a href="{% url 'animal:RegistrarAdop' animal.slug %}" class="btn btn-primary">REGISTRAR
+                                    ADOPCIÓN</a>
+                            {% endif %}
+                            {% if bc == True and estadop == True %}
+                                <a href="#" class="btn btn-primary">REGISTRAR LA ADOPCIÓN CON ESTE CARNET</a>
+
+                            {% elif bc == True and estadop == False %}
+                                    <a href="#" class="btn btn-danger">CONSULTAR MAS INFORMACIÓN</a>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <hr>
+    {% else %}
+        <div class="row container">
+            <div class="col-md-3 text-uppercase font-weight-bold">
+                {% if animalAdop.fotoAdopcion %}
+                    <img class="img-fluid" src="{{ animalAdop.fotoAdopcion.url }}"/>
+                    <div class="card card-header bg bg-white">Foto de ingreso</div>
+                {% else %}
+                    <h3>Error al cargar imagen</h3>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <ul class="nav nav-pills nav-fill mb-3 text-uppercase" id="pills-tab" role="tablist"
+                    style="background-color: #e3f2fd;">
+                    <li class="nav-item">
+                        <a class="nav-link active btn btn-block" id="pills-info-tab" data-toggle="pill"
+                           href="#pills-info"
+                           role="tab"
+                           aria-controls="pills-info" aria-selected="true"><b>Datos adicionales del animal</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block" id="pills-evaluacion-tab" data-toggle="pill"
+                           href="#pills-evaluacion"
+                           role="tab"
+                           aria-controls="pills-evaluacion" aria-selected="false"><b>Informacion de la
+                            evaluacion</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block" id="pills-adoptante-tab" data-toggle="pill"
+                           href="#pills-adoptante"
+                           role="tab"
+                           aria-controls="pills-adoptante" aria-selected="false"><b>Datos del Adoptante</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block" id="pills-documentos-tab" data-toggle="pill"
+                           href="#pills-documentos"
+                           role="tab"
+                           aria-controls="pills-documentos" aria-selected="false"><b>Documentos</b></a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-info" role="tabpanel"
+                         aria-labelledby="pills-info-tab">
+                        <div class="row text-uppercase">
+                            <div class="col-md-6 card card-body">
+                                <div class="row">
+                                    <p class="font-weight-bold">Fecha registro de la Adopción:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animalAdop.fechaRegistroAdop }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Edad aproximado del animal de compañia:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.Edad }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Descripcion adicional del animal al momento de dar en
+                                        adopcion: </p>
+                                </div>
+                                <div class="row col-md-12 card-body border border-primary font-weight-bold">
+
+                                    {{ animalAdop.descripcionAdop }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 card card-body">
+                                <div>
+                                    <p class="text-center font-weight-bold">Informacion Voluntario Encargado:</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <p class="font-weight-bold">Nombre Completo:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.voluntarioAcargo.user.persona.Nombre }}
+                                    </p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.voluntarioAcargo.user.persona.Apellido }}
+                                    </p>
+                                    <p class="font-weight-bold">Carnet:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.voluntarioAcargo.user.persona.Carnet }}(
+                                        {{ animalAdop.voluntarioAcargo.user.persona.Extencion }})
+                                    </p>
+                                    <p class="font-weight-bold">Contacto:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.voluntarioAcargo.user.persona.Celular }}
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-evaluacion" role="tabpanel"
+                         aria-labelledby="pills-evaluacion-tab">
+                        <div class="row text-uppercase">
+                            <div class="col-md-6 ">
+                                <div class="card card-body">
+                                    <p class="font-weight-bold">Tipo de Alimentacion</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animalAdop.datosMedicos.tipoAlim }}</p>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Enfermedades</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">MOQUILLO</b>
+                                            {% if animalAdop.datosMedicos.moquillo %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Parvovirus</b>
+                                            {% if animalAdop.datosMedicos.parvovirus %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">rabia</b>
+                                            {% if animalAdop.datosMedicos.rabia %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">cutaneaos</b>
+                                            {% if animalAdop.datosMedicos.cutaneaos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">parasitos</b>
+                                            {% if animalAdop.datosMedicos.parasitos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">desnutricion</b>
+                                            {% if animalAdop.datosMedicos.desnutricion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Depresion</b>
+                                            {% if animalAdop.datosMedicos.Depresion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Ansiedad</b>
+                                            {% if animalAdop.datosMedicos.Ansiedad %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional de alguna enfermedad(es)</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.masInfoEnfer }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Informacion acerca de Discapacidad(es)</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Muestra alguna discapacidad</b>
+                                            {% if animalAdop.datosMedicos.discapacidad %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    {% if animalAdop.datosMedicos.discapacidad %}
+                                        <div class="row ">
+                                            <b class="mr-2">tipo de discapacidad</b>
+                                            <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.Tipodiscapacidad }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto alguna discapacidad</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.masInfoDisca }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Problemas de socializacion Con:</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Niños menores</b>
+                                            {% if animalAdop.datosMedicos.probCNinosMenores %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Adolecentes</b>
+                                            {% if animalAdop.datosMedicos.probCAdol %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Jovenes</b>
+                                            {% if animalAdop.datosMedicos.probCjovenes %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Adultos</b>
+                                            {% if animalAdop.datosMedicos.probCAdultos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-8 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Adultos Mayores</b>
+                                            {% if animalAdop.datosMedicos.probCAdultosM %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Mujeres</b>
+                                            {% if animalAdop.datosMedicos.probMujeres %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Hombres</b>
+                                            {% if animalAdop.datosMedicos.probHombres %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-3 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">gatos</b>
+                                            {% if animalAdop.datosMedicos.probSocialGatos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-3 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">perros</b>
+                                            {% if animalAdop.datosMedicos.probSocialPerros %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">otros animales</b>
+                                            {% if animalAdop.datosMedicos.probSocialOtros %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a los problemas de
+                                            socializacion</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.masInfoDisca }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Vacunas</p>
+                                    <hr>
+                                    {% if animalAdop.datosMedicos.tipoVacuna %}
+                                        <div class="row ">
+                                            <b class="mr-2">Ultima Vacuna</b>
+                                            <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.tipoVacuna }}
+                                            </p>
+                                            <b class="mr-2">Fecha de la vacuna</b>
+                                            <p class="col-md-8 col-sm-8 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.ultimaFechaV }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-8 col-sm-8 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Vacuna antirrabica</b>
+                                            {% if animalAdop.datosMedicos.vacAntirrabica %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalResc.rabia.vacAntirrabica %}
+                                            <b class="mr-2">Fecha de vacuna antirrabica</b>
+                                            <p class="col-md-6 col-sm-6 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.ultimaFechaReb }}
+                                            </p>
+                                        {% endif %}
+                                        <hr>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a las vacunas</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.masInfoVac }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Desparacitacion</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Desparacitado</b>
+                                            {% if animalAdop.datosMedicos.desparacitacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalAdop.datosMedicos.desparacitacion %}
+                                            <b class="mr-2">Fecha de la ultima Desparacitacion</b>
+                                            <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.ultimaFechaDes }}
+                                            </p>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a las vacunas</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.masInfoVac }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Estado reproductivo</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">castrado/esterilizada</b>
+                                            {% if animalAdop.datosMedicos.esterilizacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalAdop.datosMedicos.esterilizacion %}
+                                            <b class="mr-2">Fecha de castracion/esterilizacion</b>
+                                            <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.fechaEster }}
+                                            </p>
+                                            <b class="mr-2">Codigo castracion/esterilizacion</b>
+                                            <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                                {{ animalAdop.datosMedicos.codigoEster }}
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">En gestacion(embarazada/preñada)</b>
+                                            {% if animalAdop.datosMedicos.gestacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional del estado de Gestacion</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.infoGesta }}
+                                        </p>
+                                    </div>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            <b class="mr-2">Tiene crias (esta dando de lactar)</b>
+                                            {% if animalAdop.datosMedicos.lactancia %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional del estado de Lactancia</b>
+                                        <p class="col-md-12 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.datosMedicos.infoLac }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-adoptante" role="tabpanel"
+                         aria-labelledby="pills-adoptante-tab">
+                        <div class="row ">
+                            <div class="col-md-6 card card-body">
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Nombre del adoptante:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Nombre }}</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Apellido }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Carnet de Identidad:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Carnet }}{{ animalAdop.adoptante.persona.Extencion }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Sexo:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Genero }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Fecha de Nacimiento:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Fecha_Nac }}</p>
+                                </div>
+                                <div class="row ">
+                                    <p class="font-weight-bold">Correo:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.email }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Ocupación:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.ocupacion }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Telefono Fijo:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Telefono }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Celular:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Celular }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Contacto de referencia:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.contactoReferencia }}</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.nomContactoRef }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 card card-body text-uppercase">
+                                <div class="row">
+                                    <p class="font-weight-bold">Tipo de vivienda:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.tipo_vivienda }}
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Departamento:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Departamento }}
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Ciudad:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Ciudad }}
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Zona:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Dir_zona }}
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Dirección:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Dir_calleOt }}
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Nro de vivienda/Edificio:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalAdop.adoptante.persona.Dir_num }}
+                                    </p>
+                                </div>
+                                {% if animalAdop.adoptante.persona.Edif %}
+                                    <div class="row">
+                                        <p class="font-weight-bold">Nombre del Edificio:</p>
+                                        <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.adoptante.persona.Edif }}
+                                        </p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="font-weight-bold">Nro del Departamento:</p>
+                                        <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                            {{ animalAdop.adoptante.persona.Dep }}
+                                        </p>
+                                    </div>
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-documentos" role="tabpanel"
+                         aria-labelledby="pills-documentos-tab">
+                        <div class="row ">
+                            <div class="col-md-6 card card-body">
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Documento del Croquis del domicilio:</p>
+                                    {% if animalAdop.documentos.docCroquis %}
+                                        <a href="{{ animalAdop.documentos.docCroquis.url }}" target="_blank"
+                                           class="btn btn-success col-md-11 ">Ver</a>
+                                    {% else %}
+                                        <div class="bg bg-danger font-weight-bold">No se encuentra registrado el
+                                            croquis
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Fotocopia de algun servicio basico (Luz/Agua/Gas):</p>
+                                    {% if animalAdop.documentos.docServicio %}
+                                        <a href="{{ animalAdop.documentos.docServicio.url }}" target="_blank"
+                                           class="btn btn-success col-md-11 ">Ver</a>
+                                    {% else %}
+                                        <div class="bg bg-danger font-weight-bold">No se encuentra registrado el
+                                            croquis
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Fotocopia del carnet de identidad:</p>
+                                    {% if animalAdop.documentos.docCarnet %}
+                                        <a href="{{ animalAdop.documentos.docCarnet.url }}" target="_blank"
+                                           class="btn btn-success col-md-11 ">Ver</a>
+                                    {% else %}
+                                        <div class="bg bg-danger font-weight-bold">No se encuentra registrado la
+                                            fotocopia del carnet de identidad
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Documento de compromiso:</p>
+                                    {% if animalAdop.documentos.docCompromiso %}
+                                        <a href="{{ animalAdop.documentos.docCompromiso.url }}" target="_blank"
+                                           class="btn btn-success col-md-11 ">Ver</a>
+                                    {% else %}
+                                        <div class="bg bg-danger font-weight-bold">No se encuentra registrado la
+                                            fotocopia del carnet de identidad
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6 card card-body text-uppercase">
+                                <div class="row text-uppercase ">
+                                    <p class="font-weight-bold">Documento Adicional:</p>
+                                    {% if animalAdop.documentos.docOtro %}
+                                        <a href="{{ animalAdop.documentos.docOtro.url }}" target="_blank"
+                                           class="btn btn-success col-md-11 ">Ver</a>
+                                    {% else %}
+                                        <div class="bg bg-danger font-weight-bold">No se encuentra registrado otro
+                                            documento adicional
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold">Descripción adicional del registro de documentos de la
+                                        adopción:</p>
+                                    <div class="border border-info col-md-11 ">{{ animalAdop.documentos.descripcion }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endif %}
+{% endblock %}

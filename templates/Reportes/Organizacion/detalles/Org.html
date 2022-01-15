@@ -1,0 +1,84 @@
+{% extends 'Reportes/Organizacion/nav/NavGeneral.html' %}
+{% load static %}
+{% block InfoPerfil %}
+    <div class="row text-uppercase">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div class="card-header" id="headingOne">
+                    <h4 class="mb-0">{{ tituloUno }}
+                    </h4>
+                </div>
+                <div class="card-body table-responsive p-0 ">
+                    <table class="table table-bordered table-hover text-center text-wrap" id="example">
+                        <thead class="bg-info">
+                        <tr>
+                            <th scope="col" class="align-middle">Cantidad de Voluntarios Registrados</th>
+                        </tr>
+                        </thead>
+                        <tbody class="font-weight-bold">
+                        <tr>
+                            <td>{{ V }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card card-body">
+                <div class="card-header" id="headingOne">
+                <h4 class="mb-0">{{ tituloDos}}
+                </h4>
+            </div>
+            <div class="card-body table-responsive p-0 ">
+                <table class="table table-bordered table-hover text-center text-wrap" id="example">
+                    <thead class="bg-info">
+                    <tr>
+                        <th colspan="2">ESTADO</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="align-middle">Activo</th>
+                        <th scope="col" class="align-middle">Inactivo</th>
+                    </tr>
+                    </thead>
+                    <tbody class="font-weight-bold">
+                    <tr>
+                        <td>{{ act }}</td>
+                        <td>{{ inact }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                <div class="card-header" id="headingOne">
+                    <h4 class="mb-0">{{ tituloTres }}
+                    </h4>
+                </div>
+                <div class="card-body table-responsive p-0 ">
+                    <table class="table table-bordered table-hover text-center text-wrap" id="example">
+                        <thead class="bg-info">
+                        <tr>
+                            <th colspan="2">GENERO</th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class="align-middle">Femenino</th>
+                            <th scope="col" class="align-middle">Masculino</th>
+                        </tr>
+                        </thead>
+                        <tbody class="font-weight-bold">
+                        <tr>
+                            <td>{{ F }}</td>
+                            <td>{{ M }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block librerias %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+{% endblock %}
+{% block entity %}
+    <li class="breadcrumb-item"><a href="">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h4 class="text-uppercase font-weight-bold">{{ titulo }}</h4>
+    </div>
+
+    <div class="card card-default mt-3 mb-3">
+        <!-- /.card-header style="height: 400px; -->
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-bordered table-hover text-center text-wrap" id="example">
+                <thead class="bg-info">
+                <tr>
+                    <th colspan="1" class="bg-white"></th>
+                    <th colspan="14" class="bg-blue">DATOS DEL ANIMAL DE COMPAÑIA</th>
+                    <th colspan="5" class="bg-blue">DATOS DEL ADOPTANTE</th>
+                </tr>
+                <tr>
+                    <th scope="col">Nro</th>
+                    <th scope="col">Años</th>
+                    <th scope="col">Meses</th>
+                    <th scope="col">Rango Edad</th>
+                    <th scope="col">Especie</th>
+                    <th scope="col">Raza</th>
+                    <th scope="col">Tamaño Inicio</th>
+                    <th scope="col">Genero</th>
+                    <th scope="col">Color Dominante</th>
+                    <th scope="col">Color Secundario</th>
+                    <th scope="col">Esterilizado</th>
+                    <th scope="col">Discapacidad</th>
+                    <th scope="col">Fecha de Ingreso</th>
+                    <th scope="col">Fecha de Adopcion</th>
+                    <th scope="col">Dias que transcurrieron del ingreso y la adopcion</th>
+                    <th scope="col">Edad del Adoptante</th>
+                    <th scope="col">Rango de Edad</th>
+                    <th scope="col">Genero</th>
+                    <th scope="col">Ocupacion</th>
+                    <th scope="col">Tipo de Vivienda</th>
+                </tr>
+                </thead>
+                <tbody class="font-weight-bold">
+                {% for data in object_list %}
+                    <tr>
+                        <td>{{ data.id }}</td>
+                        <td>{{ data.edadAnos }}</td>
+                        <td>{{ data.edadMeses }}</td>
+                        <td>{{ data.edad_anim }}</td>
+                        <td>{{ data.especie_anim }}</td>
+                        <td>{{ data.raza_anim }}</td>
+                        <td>{{ data.tamano_anim }}</td>
+                        <td>{{ data.sexo_anim }}</td>
+                        <td>{{ data.color_prin }}</td>
+                        <td>{{ data.color_sec }}</td>
+                        <td>{{ data.esterilizacion }}</td>
+                        <td>{{ data.Tipodiscapacidad }}</td>
+                        <td>{{ data.f_rescate }}</td>
+                        <td>{{ data.f_adopcion }}</td>
+                        <td>{{ data.diasEnAdop }}</td>
+                        <td>{{ data.edad_adop }}</td>
+                        <td>{{ data.rangoEdad }}</td>
+                        <td>{{ data.sexo_adop }}</td>
+                        <td>{{ data.ocupacion }}</td>
+                        <td>{{ data.tipo_vivienda_adop }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <hr>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+{% endblock %}
+{% block funcScript %}
+    <script type="application/javascript">
+        $(function () {
+            $('#example').DataTable({
+                "pagingType": "full_numbers",
+                autoWidth: false,
+                "language": {
+                    url: '{% static 'lib/datatables-1.10.20/spanish.txt' %}'
+                }
+            });
+        });
+    </script>
+{% endblock %}

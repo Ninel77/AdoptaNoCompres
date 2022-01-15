@@ -1,0 +1,22 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+{% block tituloPerfil %}
+        <h4 class="card-body">{{ titulo }}</h4>
+{% endblock %}
+{% block nav %}
+    {% if nav == 'General' %}
+        {% include 'Reportes/Organizacion/include/nav/navGeneral.html' %}
+    {% endif %}
+    {% if nav == 'Caninos' %}
+        {% include 'Reportes/Organizacion/include/nav/navCanes.html' %}
+    {% endif %}
+    {% if nav == 'Felinos' %}
+        {% include 'Reportes/Organizacion/include/nav/navFelino.html' %}
+    {% endif %}
+    {% if nav == 'Otros' %}
+        {% include 'Reportes/Organizacion/include/nav/navOtros.html' %}
+    {% endif %}
+    {% if nav == 'Organizacion' %}
+        {% include 'Reportes/Organizacion/include/nav/navOrg.html' %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    {% if entity_anterior_url %}
+        <li class="breadcrumb-item"><a href="{{ entity_anterior_url }}"><b>{{ entity_anterior }}</b></a></li>
+    {% endif %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row text-center bg bg-primary">
+        {% block tituloPerfil %}
+        {% endblock %}
+    </div>
+    <div class="bd-example bd-example-tabs">
+        {% block nav %}
+
+        {% endblock %}
+        <h4 class="text-center mt-2 text-white text-uppercase">
+            {{ tituloprincipal }}
+        </h4>
+        <hr class="border border-white">
+        {% block InfoPerfil %}
+
+        {% endblock %}
+    </div>
+
+{% endblock %}

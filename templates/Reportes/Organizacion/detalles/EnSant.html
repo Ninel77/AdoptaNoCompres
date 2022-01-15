@@ -1,0 +1,45 @@
+{% extends 'Reportes/Organizacion/nav/NavGeneral.html' %}
+{% load static %}
+{% block InfoPerfil %}
+    <div class="row text-uppercase">
+        <div class="col-md-12 card-body">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header bg-primary" id="headingOne">
+                        <h4 class="mb-0 text-uppercase">
+                            <button class="btn btn-link text-white" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-plus-square"></i> {{ tituloUno }}
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            {% include 'Reportes/Organizacion/include/Organizacion/enSant/RangoEdad.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-primary" id="headingTwo">
+                        <h4 class="mb-0 text-uppercase">
+                            <button class="btn btn-link collapsed text-white" type="button"
+                                    data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                <i class="fas fa-plus-square"></i> {{ tituloDos }}
+                            </button>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            {% include 'Reportes/Organizacion/include/Organizacion/enSant/RangoEdadxDiscapacidad.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

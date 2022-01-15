@@ -1,0 +1,34 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+{% block thead %}
+    <tr>
+        <th scope="col">Organizacion</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Carnet</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Editar</th>
+    </tr>
+
+{% endblock %}
+{% block tbody %}
+    {% for organizador in object_list %}
+        <tr>
+            <td >{{ organizador.organizacion.nomorganizacion }}</td>
+            <td>{{ organizador.user.persona.Nombre }}</td>
+            <td>{{ organizador.user.persona.Apellido }}</td>
+            <td>{{ organizador.user.persona.Carnet }} ({{ organizador.user.persona.Extencion }})</td>
+            <td>{{ organizador.user.persona.Celular }}</td>
+            <td>{{ organizador.user.email }}</td>
+            <td>{% if organizador.user.is_active %}         Activo
+            {% else %} Inactivo
+            {% endif %}</td>
+            <td>
+                <a href="{% url 'userLog:superuser:ActEncOrg' organizador.id %}" type="button"
+                   class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

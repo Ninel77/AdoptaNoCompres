@@ -1,0 +1,208 @@
+/**{
+    cursor: url("/static/img/cursor.png"), auto;
+}
+
+body{
+    cursor: url("/static/img/cursor.png"), auto;
+}
+
+@font-face {
+    font-family: bevan;
+    src: url("tipoFuente/playfair-display-black.ttf");
+}*/
+
+.baseim {
+    background: url("/static/img/FondoOf2.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+tit {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'Courgette', cursive;
+}
+
+h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+h5, h6 {
+    font-family: 'Saira', sans-serif;
+}
+
+.base {
+    background-color: #d8e6ff;
+}
+
+.cabecera {
+    font-family: 'Bungee Shade', cursive;
+    color: #6269ff;
+}
+
+.bgimage {
+    background: url("/static/img/animales3.jpg") no-repeat center center fixed;
+    object-fit: cover;
+    width: 50%;
+    height: 100%;
+}
+
+
+.three-columns {
+    width: 32%;
+    display: inline-block;
+}
+
+.user_card {
+    height: 550px;
+    width: 450px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+
+.form_container {
+    margin-top: 100px;
+}
+
+.login_btn {
+    width: 100%;
+    background: #01e1ff !important;
+    color: white !important;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.login_container {
+    padding: 0 2rem;
+}
+
+.input-group-text {
+    background: #01e1ff !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #01e1ff !important;
+}
+
+.embed-responsive .card-img-top {
+    object-fit: cover;
+}
+
+.botonExito {
+
+    background-color: #338c1f;
+    border-color: #ffffff;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    border-radius: .3rem;
+    overflow: hidden;
+}
+
+.botonExito::before {
+    content: 'hacer click';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    font-width: 700;
+    text-shadow: .1rem .1rem .1rem #333333;
+    transition: .2s ease;
+    opacity: 0;
+}
+
+.botonExito:hover::before {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+}
+
+.botonExito:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+
+/*tarjeta 3*/
+.card-header-third {
+    height: 75px;
+    box-shadow: 1px 5px 15px #ffffff;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 80%;
+}
+
+.cont {
+  --d: 6px; /* folded part */
+  --c: blue; /* color */
+  --f: 16px; /* ribbon font-size */
+
+  width: 200px;
+  height: 180px;
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  background: lightblue;
+}
+
+.cont::before {
+  content: attr(data-ribbon);
+  position: absolute;
+  font-size: var(--f);
+  top: 0;
+  right: 0;
+  transform: translate(29.29%, -100%) rotate(45deg);
+  color: #fff;
+  text-align: center;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  transform-origin: bottom left;
+  padding: 5px 35px calc(var(--d) + 5px);
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 0 0) bottom/100% var(--d)
+    no-repeat var(--c);
+  background-clip: padding-box;
+  clip-path: polygon(0 0,100% 0,100% 100%,calc(100% - var(--d)) calc(100% - var(--d)),var(--d) calc(100% - var(--d)),0 100%);
+  -webkit-mask: linear-gradient(135deg,transparent calc(50% - var(--d) * 0.707),#fff 0) bottom left,
+    linear-gradient(-135deg, transparent calc(50% - var(--d) * 0.707), #fff 0)bottom right;
+  -webkit-mask-size: 300vmax 300vmax;
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+}
+.left::before {
+  left: 0;
+  right: auto;
+  transform: translate(-29.29%, -100%) rotate(-45deg);
+  transform-origin: bottom right;
+}

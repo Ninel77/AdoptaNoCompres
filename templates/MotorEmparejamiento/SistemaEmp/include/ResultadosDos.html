@@ -1,0 +1,77 @@
+{% if object_listTres %}
+        <div class="row">
+            {% for animalesAdopcion in object_listTres %}
+                <div class="col-md-3 col-sm-3">
+                    <a href="{% url 'motor:DetalleAnimSR' animalesAdopcion.slug %}">
+                        <div class="card bg bg-white" style="height: 600px">
+                            <div class="row card-header bg-info border border-white" style="height: 50px;">
+                                <h5 class="text-xl">{{ animalesAdopcion.animal.nombre }}</h5>
+                            </div>
+                            <div class="align-middle card-img">
+                                {% if  animalesAdopcion.fotoEnAdopcion %}
+                                    <img class="img-fluid rounded mx-auto d-block"
+                                         style="width: auto; height: 250px"
+                                         src="{{ animalesAdopcion.fotoEnAdopcion.url }}"/>
+                                {% else %}
+                                    <p>No se cargo correctamente la imagen</p>
+                                {% endif %}
+                            </div>
+                            <div class="row bg-info border border-white"
+                                 style="height: 60px;">
+                                <div class="col-3 text-center">
+                                    <div class="card-img">
+                                        <img class="img-fluid rounded" style="width: auto; height: 70px"
+                                             src="{{ animalesAdopcion.animal.organizacion.fotografia.url }}">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-header">
+                                        <h6 style="line-height: 90%"> {{ animalesAdopcion.animal.organizacion.nomorganizacion }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body" style="height: 190px">
+                                <div class="row text-md font-weight-bold text-uppercase">
+                                    <div class="col-md-8">
+                                        <i class="fas fa-check-circle text-success"></i> {{ animalesAdopcion.animal.especie }}
+                                        {% if animalesAdopcion.animal.especie.especies == 'CANINA' %}(Perro)
+                                        {% elif animalesAdopcion.animal.especie.especies == 'FELINA' %}(Gato)
+                                        {% else %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6"><i class="fas fa-check-circle text-success"></i>
+                                        {{ animalesAdopcion.animal.sexo }}
+                                    </div>
+                                    <div class="col-md-12"><i
+                                            class="fas fa-check-circle text-success"></i> {{ animalesAdopcion.edad_Anim }}
+                                        - Aprox. {{ animalesAdopcion.Edad }}</div>
+                                    <div class="col-md-8"><i
+                                            class="fas fa-check-circle text-success"></i> {{ animalesAdopcion.animal.tamano }}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {% if animalesAdopcion.datosMedicos.esterilizacion %}
+                                            <i class="fas fa-check-circle text-success"></i>
+                                            {% if animalesAdopcion.animal.sexo == 'HEMBRA' %}Esterilizada
+                                            {% else %} Castrado
+                                            {% endif %}
+                                        {% else %}
+                                            <i class="fas fa-times-circle text-danger"></i>
+                                            {% if animalesAdopcion.animal.sexo == 'HEMBRA' %}Esterilizada
+                                            {% else %} Castrado
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer bg-info text-center" style="height: 50px">
+                                <h6><i class="fas fa-info-circle"></i> ¿Quiere saber más?</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3 style="color: white">No existe animales de compañia que coincidan con la busqueda</h3>
+    {% endif %}

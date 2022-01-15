@@ -1,0 +1,84 @@
+{% load static %}
+<div class="content-header text-center" style="color:white">
+    <h2>Bienvenido {{ user.username }}
+        <h4> ({{ user.rol }})</h4>
+    </h2>
+</div>
+<div class="row">
+    <div class="col-md-6" style="max-height:40%">
+        <div class="card card-header mt-1 text-uppercase font-weight-bold bg-white"><b>Mision de la pagina</b></div>
+        <div class="card card-body">
+            <video src="{% static 'img/gif/UsuarioReg.mp4' %}" style="object-fit: cover" autoplay muted
+                   loop></video>
+        </div>
+    </div>
+    <div class="col-md-6" style="max-height:50%">
+        <div class="card card-header mt-1 text-uppercase font-weight-bold bg-white"><b>La Aplicacion web te ofrece:</b>
+        </div>
+        <div class="row font-weight-bold">
+            <div class="col-md-6 ">
+                <a href="{% url 'ListaOrganizaciones' %}">
+                    <div class="card card-body">
+                        <div class="card-title font-weight-bold text-uppercase">
+                            Lista de las Organizaciones Protectoras de Animales</div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">Encontraras la informacion de contacto
+                            de todas las organizaciones protectoras de animales registradas en la aplicacion web</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'ListaAnimalesAdopcion' %}">
+                    <div class="card card-body">
+                        <div class="card-title font-weight-bold text-uppercase">
+                            Lista de Animales de Compañia en Adopcion</div>
+                        <hr>
+                        <div class="card-subtitle">
+                            <p style="text-align: justify">
+                                Podras visualizar a todos los animales de compañia registrados (perros, gatos, entre
+                                otros) que estan <b>en Adopcion</b>. Podras ver su informacion completa.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12">
+                <a href="{% url 'motor:InicioMotor' %}">
+                    <div class="card card-body">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            <div class="ribbon bg-success text-lg">
+                                Disponible
+                            </div>
+                        </div>
+                        <div class="card-title font-weight-bold text-uppercase ">Motor de emparejamiento</div>
+                        <hr>
+                        <div class="card-subtitle">
+                            <p style="text-align: justify"> La aplicacion web te brinda un motor de emparejamiento donde
+                                con algunos datos que se requiere, encontrara a todos los animales de compañia
+                                que se ajustan a los datos proporcionados</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12">
+                <a href="{% url 'motor:LisData' %}">
+                    <div class="card card-body">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            <div class="ribbon bg-success text-lg">
+                                Disponible
+                            </div>
+                        </div>
+                        <div class="card-title font-weight-bold text-uppercase ">Datos estadisticos
+                        </div>
+                        <hr>
+                        <div class="card-subtitle"><p style="text-align: justify">
+                            La aplicacion web te brinda reportes de cuantos animales han sido registrados en la
+                            aplicacion web, de estos cuantos estan en rehabilitacion, en adopcion y adoptados
+                        </p></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

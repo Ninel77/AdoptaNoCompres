@@ -1,0 +1,75 @@
+{% extends 'base/baseForm2col.html' %}
+{% load static %}
+{% block formPrin %}
+    {% for field1 in form1 %}
+        <p>
+        <div class="input-group-append">
+            <div class="col-md-5 text-right" style="">{{ field1.label_tag }}</div>
+            <div class="col-md-7">
+                <div class="">
+                    {{ field1 }}
+                </div>
+                <div class="">
+                    {% for error1 in field1.errors %}
+                        <span style="color: red">({{ error1 }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </p>
+    {% endfor %}
+{% endblock %}
+{% block formSec %}
+    {% for field2 in form2 %}
+        <p>
+        <div class="input-group-append">
+            <div class="col-md-5 text-right" style="">{{ field2.label_tag }}</div>
+            <div class="col-md-7 ">
+                <div class="mr-3">
+                    {{ field2 }}
+                </div>
+                <div class="">
+                    {% for error2 in field2.errors %}
+                        <span style="color: red">({{ error2 }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </p>
+    {% endfor %}
+   {% for field3 in form3 %}
+        <p>
+        <div class="input-group-append">
+            <div class="col-md-5 text-right" style="">{{ field3.label_tag }}</div>
+            <div class="col-md-7">
+                <div class="mr-3">
+                    {{ field3 }}
+                </div>
+                <div class="">
+                    {% for error3 in field3.errors %}
+                        <span style="color: red">({{ error3 }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </p>
+    {% endfor %}
+    {% for field in form %}
+        <p>
+        <div class="input-group-append">
+            <div class="col-md-5 text-right" style="">{{ field.label_tag }}</div>
+            <div class="col-md-7">
+                <div class="mr-3">
+                    {{ field }}
+                </div>
+                <div class="">
+                    {% for error in field1.errors %}
+                        <span style="color: red">({{ error }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </p>
+    {% endfor %}
+{% endblock %}
+

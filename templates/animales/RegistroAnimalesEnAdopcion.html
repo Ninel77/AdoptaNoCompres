@@ -1,0 +1,431 @@
+{% extends 'base/baseForm3partes.html' %}
+{% load static %}
+
+{% block errores %}
+    {% if form.errors %}
+        <div class="bg-danger">
+            {% for field1 in form %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span><br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form2.errors %}
+        <div class="bg-danger">
+            {% for field1 in form2 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span><br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrim %}
+    <div class="card-body">
+        {% for field1 in form1 %}
+            <div class="form-group row">
+                <div class="col-md-4 ">
+                    {{ field1.label_tag }}
+                </div>
+                <div class="col-md-8">
+                    <div class="">
+                        {{ field1 }}
+                    </div>
+                    <div class="">
+                        {% for error1 in field1.errors %}
+                            <span style="color: red">({{ error1 }})</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block formSec %}
+    <div class="card text-info">
+        <b class="text-center">
+            Informacion del rescate
+        </b>
+        <div class="card-body">
+            <div> Edad aproximado del animal de compañia:<br>
+                <b class="text-right">
+                    {{ form3.Edad }}</b>
+            </div>
+            <div class="row">Fecha de Rescate:<b class="text-right">{{ form3.Fecha_Rescate }}</b>
+            </div>
+            <div class="row">Tipo de ingreso:<b class="text-right">{{ form3.tipoIngreso }}</b>
+            </div>
+            {% if form3.descripcionRescate %}
+                <div class="row">Descripción del rescate:<b class="text-right">{{ form3.descripcionRescate }}</b>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="form-group row mr-3">
+            <div class="col-md-12 col-sm-10">{{ form.fecha_en_Adopcion.label_tag }}</div>
+            <div class="col-md-6 col-sm-6">{{ form.fecha_en_Adopcion }}</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 col-sm-4"><b>Ingrese la edad aproximada</b></div>
+            <div class="col-md-6 col-sm-4">
+                <div class="row">
+                    <div class="col-md-5"><b>{{ form.edadAnos.label_tag }}</b></div>
+                    <div class="col-md-5">{{ form.edadAnos }}</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-4">
+                <div class="row">
+                    <div class="col-md-5"><b>{{ form.edadMeses.label_tag }}</b></div>
+                    <div class="col-md-5">{{ form.edadMeses }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mr-3">
+            <div class="col-md-6">{{ form.fotoEnAdopcion.label_tag }}</div>
+            <div class="">{{ form.fotoEnAdopcion }}</div>
+        </div>
+        <div class="form-group row mr-1">
+            <div class="">{{ form.desCaracter.label_tag }} </div>
+            <div class="col-md-12">{{ form.desCaracter }}</div>
+        </div>
+        <div class="form-group row mr-1">
+            <div class="">{{ form.desOrigen.label_tag }} </div>
+            <div class="col-md-12">{{ form.desOrigen }}</div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block formTer %}
+    <div class="accordion" id="accordionExample">
+        <div class="card card-blue">
+            <div class="card-header row text-uppercase" id="headingOne">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link " type="button" data-toggle="collapse"
+                            data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-plus-square"></i> TIPO DE ALIMENTACIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="col-md-7 col-sm-6 text-uppercase"> {{ form2.tipoAlim.label_tag }} </div>
+                            <div class="col-md-5 col-sm-6">{{ form2.tipoAlim }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingTwo">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-plus-square"></i> ENFERMEDADES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-3"> {{ form2.moquillo }}
+                                <div class="ml-2">{{ form2.moquillo.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.parvovirus }}
+                                <div class="ml-2">{{ form2.parvovirus.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.rabia }}
+                                <div class="ml-2">{{ form2.rabia.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.cutaneaos }}
+                                <div class="ml-2">{{ form2.cutaneaos.label }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-3"> {{ form2.parasitos }}
+                                <div class="ml-2 ">{{ form2.parasitos.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.desnutricion }}
+                                <div class="ml-2">{{ form2.desnutricion.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.Depresion }}
+                                <div class="ml-2">{{ form2.Depresion.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form2.Ansiedad }}
+                                <div class="ml-2">{{ form2.Ansiedad.label }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">{{ form2.masInfoEnfer.label_tag }}</div>
+                    <div>{{ form2.masInfoEnfer }}</div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingThree">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fas fa-plus-square"></i>ACERCA DEL ESTADO REPRODUCTIVO
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-3">
+                            <div class="row"> {{ form2.esterilizacion.label_tag }}
+                                <div class="ml-4"><b>{{ form2.esterilizacion }}</b></div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form2.fechaEster.label_tag }}
+                                <div class="ml-4">{{ form2.fechaEster }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form2.codigoEster.label_tag }}
+                                <div class="ml-2">{{ form2.codigoEster }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-3 mt-3">
+                            <div class="row"> {{ form2.gestacion.label_tag }}
+                                <div class="ml-4"><b>{{ form2.gestacion }}</b></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ml-2">{{ form2.infoGesta.label_tag }}</div>
+                        <div>{{ form2.infoGesta }}</div>
+                        <div class="row ml-3 mt-2">
+                            <div class="row"> {{ form2.lactancia.label_tag }}
+                                <div class="ml-4"><b>{{ form2.lactancia }}</b></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ml-2">{{ form2.infoLac.label_tag }}</div>
+                        <div>{{ form2.infoLac }}</div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingFour">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LA SOCIALIZACION
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="bg-success">Si el animal de compañia no es apto para convivir con cierto criterio a
+                        continuacion
+                        deseleccione el campo correspondiente.
+                    </div>
+                    <hr>
+                    <div style="line-height: 90%;">
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con NIÑOS MENORES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probCNinosMenores }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADOLECENTES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probCAdol }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con JOVENES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probCjovenes }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADULTOS?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probCAdultos }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADULTOS MAYORES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probCAdultosM }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con personas del genero FEMENINO?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form2.probMujeres }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con personas del genero MASCULINO?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form2.probHombres }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con otro(s) CAN(ES) (PERROS)?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form2.probSocialPerros }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con otro(s) FELINO(S) (GATOS)?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form2.probSocialGatos }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="mt-2 " style="line-height: 80%;">{{ form2.masInfoProbSoc.label_tag }}</div>
+                    <div>{{ form2.masInfoProbSoc }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingFive">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS DISCAPACIDADES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2">
+                            <div class="row col-md-6 col-sm-6"> {{ form2.discapacidad }}
+                                <div class="ml-4"><b>{{ form2.discapacidad.label }}</b></div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form2.Tipodiscapacidad.label_tag }}
+                                <div class="ml-2">{{ form2.Tipodiscapacidad }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>{{ form2.masInfoDisca.label_tag }}</div>
+                    <div>{{ form2.masInfoDisca }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingSix">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS VACUNAS
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form2.tipoVacuna.label_tag }}
+                                <div class="ml-2">{{ form2.tipoVacuna }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaV.label_tag }}
+                                <div class="ml-2">{{ form2.ultimaFechaV }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-2">
+                            <div class="row col-md-6 col-sm-6"> {{ form2.vacAntirrabica.label_tag }}
+                                <div class="ml-4">{{ form2.vacAntirrabica }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaReb.label_tag }}
+                                <div class="ml-2">{{ form2.ultimaFechaReb }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-1">{{ form2.masInfoVac.label_tag }}</div>
+                        <div>{{ form2.masInfoVac }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingSeven">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS DESPARASITACIONES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseseven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form2.desparacitacion.label_tag }}
+                                <div class="ml-4">{{ form2.desparacitacion }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form2.ultimaFechaDes.label_tag }}
+                                <div class="ml-2">{{ form2.ultimaFechaDes }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-1">{{ form2.masInfoDes.label_tag }}</div>
+                    <div>{{ form2.masInfoDes }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingEight">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        <i class="fas fa-plus-square"></i> MAS INFORMACION RESPECTO A LA EVALUACIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="mt-1 ml-2">{{ form2.descripcionEval.label_tag }}</div>
+                    <div>{{ form2.descripcionEval }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

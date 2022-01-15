@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h5>{{ titulo }}</h5>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if accion == 'Actualizar' %}
+            <div class="row mt-1 ">
+                <div class="col-md-6">
+                    <button class="btn btn-block btn-success" type="submit">{{ accion }}</button>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'animal:detDatAnim' slug %}"
+                       class="btn btn-block btn-danger">{{ accion2 }}</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% block errores %}
+
+        {% endblock %}
+        {% if not mensajeEdad %}
+            <div class="alert alert-danger mt-2" role="alert">
+                {{ mensaje }}
+            </div>
+        {% endif %}
+
+        <div class="card mt-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center" style="color: #043c75">
+                        <h4 class="mt-2 mb-2">{{ tituloPrim }}</h4>
+                    </div>
+                    <hr>
+                    {% block formPrim %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-4 bg bg-info">
+
+                    <div class="text-center mt-2" style="color: #FFFFFF">
+                        <h4 class="mt-2 mb-2">{{ tituloSec }}</h4>
+                    </div>
+                    <hr>
+                    {% block formSec %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mt-2" style="color: #043c75">
+                        <h4>{{ tituloTer }}</h4>
+                    </div>
+                    <hr>
+                    {% block formTer %}
+
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+        <div class="card mt-2">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <div class="text-center" style="color: #043c75">
+                        <h4 class="mt-2 mb-2">{{ tituloCuar }}</h4>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            {% block formCuar %}
+                            {% endblock %}
+                        </div>
+                        <div class="col-md-6 ">
+                            {% block formQuin %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 bg bg-info">
+                    <div class="text-center mt-2" style="color: #FFFFFF">
+                        <h4>{{ tituloSex }}</h4>
+                    </div>
+                    <hr>
+                    {% block formSex %}
+
+                    {% endblock %}
+                </div>
+
+            </div>
+            {% if accion == 'Registrar' %}
+                <button class="btn btn-block btn-success" type="submit">{{ accion }}</button>
+            {% endif %}
+        </div>
+    </form>
+
+    <div class="row mb-2 ml-2  "></div>
+{% endblock %}

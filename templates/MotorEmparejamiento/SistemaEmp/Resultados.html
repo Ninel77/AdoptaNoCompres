@@ -1,0 +1,144 @@
+{% extends 'MotorEmparejamiento/SistemaEmp/base.html' %}
+{% load static %}
+{% block filtrosuno %}
+    <div class="text-uppercase font-weight-bold text-white">Resultados basados en los siguientes datos:</div>
+    <div class="row text-center font-weight-bold text-uppercase ">
+        <div class="col-md-3 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.edad_can }}<br><small>Edad del can</small>
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ tamanoPrin }}<br><small>Tamaño del can</small>
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ GeneroPrin }}<br><small>Genero del can</small>
+        </div>
+        <div class="col-md-3 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.tipoVivienda }}<br><small>Tipo vivienda</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.edad_persona }}<br><small>Edad persona</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.sexo_persona }}<br><small>Genero persona</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.disp_tiempo }} HRS. al dia<br><small>tiempo
+            disponible</small>
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con niños menores</small>
+            {% if form.ninos_menores %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Can(es)</small>
+            {% if form.otro_can %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Felino(s)</small>
+            {% if form.otro_gato %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+    </div>
+    <hr class="border border-white">
+{% endblock %}
+{% block listaUno %}
+    {% include 'MotorEmparejamiento/SistemaEmp/include/ResultadosPrincipales.html' %}
+{% endblock %}
+
+{% block filtrodos %}
+    <div class="text-uppercase font-weight-bold text-white">Resultados basados en los siguientes datos:</div>
+    <div class="row text-center font-weight-bold text-uppercase ">
+        <div class="col-md-3 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ edadCanUno }}<br><small>Edad del can</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ tamanoPrin }}<br><small>Tamaño del Can</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ GeneroPrin }}<br><small>genero del Can</small>
+        </div>
+        <div class="col-md-3 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ RangoEdad }}<br><small>Edad persona</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.sexo_persona }}<br><small>Genero persona</small>
+        </div>
+        <div class="col-md-3 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.tipoVivienda }}<br><small>Tipo vivienda</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.disp_tiempo }} HRS. al dia<br><small>tiempo
+            disponible</small>
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con niños menores</small>
+            {% if form.ninos_menores %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Can(es)</small>
+            {% if form.otro_can %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Felino(s)</small>
+            {% if form.otro_gato %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+    </div>
+    <hr class="border border-white">
+{% endblock %}
+
+{% block listaDos %}
+    {% include 'MotorEmparejamiento/SistemaEmp/include/ResultadosUno.html' %}
+{% endblock %}
+
+{% block filtrotres %}
+    <div class="text-uppercase font-weight-bold text-white">Resultados basados en los siguientes datos:</div>
+    <div class="row text-center font-weight-bold text-uppercase ">
+        <div class="col-md-3 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ edadCanDos }}<br><small>Edad del can</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ tamanoDos }}<br><small>Tamaño del Can</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ GeneroDos }}<br><small>genero del Can</small>
+        </div>
+        <div class="col-md-3 col-sm-3 rounded bg-info" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ RangoEdad }}<br><small>Edad persona</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.sexo_persona }}<br><small>Genero persona</small>
+        </div>
+        <div class="col-md-3 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.tipoVivienda }}<br><small>Tipo vivienda</small>
+        </div>
+        <div class="col-md-2 col-sm-2 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <i class="fas fa-check-circle text-success"></i> {{ form.disp_tiempo }} HRS. al dia<br><small>tiempo
+            disponible</small>
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con niños menores</small>
+            {% if form.ninos_menores %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Can(es)</small>
+            {% if form.otro_can %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+        <div class="col-md-2 col-sm-3 rounded bg-white" style="line-height: 80%; border:double #043c75">
+            <small class="font-weight-bold ">convive Con otro(s) Felino(s)</small>
+            {% if form.otro_gato %} <i class="fas fa-check-circle text-success"></i>
+            {% else %}<i class="fas fa-times-circle text-danger"></i>{% endif %}
+        </div>
+    </div>
+    <hr class="border border-white">
+{% endblock %}
+
+{% block listatres %}
+    {% include 'MotorEmparejamiento/SistemaEmp/include/ResultadosDos.html' %}
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'Reportes/Organizacion/nav/NavGeneral.html' %}
+{% load static %}
+{% block InfoPerfil %}
+    <div class="row container">
+        <div class="col-md-12 col-sm-12">
+            <ul class="nav nav-pills nav-fill mb-3 text-uppercase" id="pills-tab" role="tablist"
+                style="background-color: #e3f2fd;">
+                <li class="nav-item">
+                    <a class="nav-link active btn btn-block" id="pills-info-tab" data-toggle="pill" href="#pills-info"
+                       role="tab"
+                       aria-controls="pills-info" aria-selected="true"><b>TOTAL</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-block" id="pills-evaluacion-tab" data-toggle="pill"
+                       href="#pills-evaluacion"
+                       role="tab"
+                       aria-controls="pills-evaluacion" aria-selected="false"><b>ACTUAL</b></a>
+                </li>
+            </ul>
+            <hr>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+                    <div class="row text-uppercase">
+                        <div class="col-md-12 card-body">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header bg-primary" id="headingOne">
+                                        <h4 class="mb-0 text-uppercase">
+                                            <button class="btn btn-link text-white" type="button" data-toggle="collapse"
+                                                    data-target="#collapseOne"
+                                                    aria-expanded="true" aria-controls="collapseOne">
+                                                <i class="fas fa-plus-square"></i> {{ tituloUno }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                         data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/CanPorTipoDeIngreso.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header bg-primary" id="headingTwo">
+                                        <h4 class="mb-0 text-uppercase">
+                                            <button class="btn btn-link collapsed text-white" type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                <i class="fas fa-plus-square"></i> {{ tituloDos }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                         data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/CanPorRangEdad.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header bg-primary" id="headingThree">
+                                        <h4 class="mb-0 text-uppercase">
+                                            <button class="btn btn-link collapsed text-white" type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                                <i class="fas fa-plus-square"></i> {{ tituloTres }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                         data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/TotalTipoIngresoyRangoEdad.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="pills-evaluacion" role="tabpanel" aria-labelledby="pills-evaluacion-tab">
+                    <div class="row text-uppercase">
+                        <div class="col-md-12 card-body">
+                            <div class="accordion" id="accordionExample1">
+                                <div class="card ">
+                                    <div class="card-header bg-primary" id="headingThree">
+                                        <h4 class="mb-0">
+                                            <button class="btn btn-link text-white" type="button" data-toggle="collapse"
+                                                    data-target="#collapseThree"
+                                                    aria-expanded="true" aria-controls="collapseThree">
+                                                <i class="fas fa-plus-square"></i> {{ tituloCuatro }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                         data-parent="#accordionExample1">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/CanPorTipoIngresoAct.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header bg-primary" id="headingFour">
+                                        <h4 class="mb-0">
+                                            <button class="btn btn-link text-white collapsed" type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                <i class="fas fa-plus-square"></i> {{ tituloCinco }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                         data-parent="#accordionExample1">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/CanPorRangEdadAct.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header bg-primary" id="headingFive">
+                                        <h4 class="mb-0">
+                                            <button class="btn btn-link text-white collapsed" type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
+                                                <i class="fas fa-plus-square"></i> {{ tituloSeis }}
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                         data-parent="#accordionExample1">
+                                        <div class="card-body">
+                                            {% include 'Reportes/Organizacion/include/Organizacion/ingreso/ActualTipoIngresoyRangoEdad.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

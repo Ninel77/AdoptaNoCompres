@@ -1,0 +1,179 @@
+{% extends 'base/baseForm2col.html' %}
+{% load static %}
+{% block errores %}
+    {% if form.errors %}
+        <div class="alert alert-danger mt-2" role="alert">
+            {% for error in form.errors %}
+                <span style="color: red">
+                {{ error.label_tag }}({{ error }})
+            </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form2.errors %}
+        <div class="alert alert-danger mt-2" role="alert">
+            {% for error in form2.errors %}
+                <span style="color: red">
+                {{ error.label_tag }}({{ error }})
+            </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form3.errors %}
+        <div class="alert alert-danger mt-2" role="alert">
+            {% for error in form3.errors %}
+                <span style="color: red">
+                {{ error.label_tag }}({{ error }})
+            </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrin %}
+    <div class="card card-body">
+        <div class="text-center">
+            {{ form.avatar.label_tag }}</div>
+        <div class="text-center ">
+            <img class="profile-user-img img-fluid img-circle" style="width: 300px; height: auto"
+                 src="{{ form.instance.avatar.url }}" alt="User profile picture"/>
+        </div>
+        <div class="row">
+            <small>
+                {{ form.avatar }}
+            </small>
+        </div>
+    </div>
+    <div class="card card-body text-white" style="background-color: #043c75">
+        <div class="text-center text-uppercase"><b>Informacion de conexion</b></div>
+        <hr class="border border-info">
+        <div class="input-group-append">
+            <div class="col-md-4">
+                <b>Fecha de registro:</b></div>
+            <div class="col-md-8  form-control border border-primary font-weight-bold">
+                {{ request.user.fecha_reg }}
+            </div>
+        </div>
+        <div class="input-group-append mt-3">
+            <div class="col-md-4"><b>Fecha de ulima sesion:</b></div>
+            <div class="col-md-8  form-control border border-primary font-weight-bold">
+                {{ request.user.last_login }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formSec %}
+    <div class="input-group-append">
+        <div class="col-md-4 text-right">
+            {{ form2.username.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form2.username }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form2.email.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form2.email }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Nombre.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Nombre }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Apellido.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Apellido }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Carnet.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Carnet }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Extencion.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Extencion }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Genero.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Genero }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Fecha_Nac.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Fecha_Nac }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Celular.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Celular }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Departamento.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Departamento }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Ciudad.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Ciudad }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Dir_zona.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Dir_zona }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Dir_calleOt.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Dir_calleOt }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Dir_num.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Dir_num }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Edif.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Edif }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form3.Dep.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form3.Dep }}
+        </div>
+    </div>
+{% endblock %}

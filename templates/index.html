@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block contenido %}
+    {% if user.is_authenticated %}
+        {% if user.is_userr %}
+            {% include 'include/index/indexUserReg.html' %}
+        {% elif user.is_organizador and user.is_voluntario %}
+            {% include 'include/index/indexUserORg.html' %}
+        {% elif user.is_voluntario %}
+            {% include 'include/index/indexUserVol.html' %}
+        {% elif user.is_superuser %}
+            {% include 'include/index/indexUserSuper.html' %}
+        {% endif %}
+    {% else %}
+        {% include 'include/index/indexUserInv.html' %}
+    {% endif %}
+{% endblock %}

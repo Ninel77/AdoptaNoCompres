@@ -1,0 +1,612 @@
+{% extends 'base/baseForm3partes.html' %}
+{% load static %}
+
+{% block errores %}
+    {% if form.errors %}
+        <div class="bg-danger font-weight-bold">
+        <div><b class="text-white">Datos de la adopcion del animal</b></div>
+            {% for field1 in form %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span> <br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form1.errors %}
+        <div class="bg-danger font-weight-bold">
+        <div><b class="text-white"><b>Datos basicos del animal</b></div>
+            {% for field1 in form1 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form2.errors %}
+        <div><b>Datos del adoptante</b></div>
+        <div class="bg-danger">
+            {% for field1 in form2 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form3.errors %}
+        <div><b>Datos basicos del adoptante (datos persona)</b></div>
+        <div class="bg-danger">
+            {% for field1 in form3 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form4.errors %}
+        <div><b>Datos del documentos</b></div>
+        <div class="bg-danger">
+            {% for field1 in form4 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form5.errors %}
+        <div><b>Datos evaluacion del animal</b></div>
+
+        <div class="bg-danger">
+            {% for field1 in form5 %}
+                {% for error1 in field1.errors %}
+                    <span style="color: white">{{ field1.label_tag }}({{ error1 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block formPrim %}
+    <div class="accordion" id="accordionExample">
+        <div class="card card-blue">
+            <div class="card-header row text-uppercase" id="headingOne">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link " type="button" data-toggle="collapse"
+                            data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-plus-square"></i> REGISTRAR DATOS PARA LA ADOPCIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="card bg bg-info">
+                        <b class="text-center">
+                            Informacion del adicional cuando fue puesto en adopcion
+                        </b>
+                        <div class="card-body">
+                            <div> Edad aproximado del animal de compañia:<b class="text-right">
+                                <br>{{ form6.Edad }}</b>
+                            </div>
+                            <div>Fecha en la que se puso adopcion:
+                                <p class="text-right">{{ form6.fecha_en_Adopcion }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 col-sm-4"><b>Ingrese la edad aproximada</b></div>
+                        <div class="col-md-6 col-sm-4">
+                            <div class="row">
+                                <div class="col-md-5"><b>{{ form.edadAnos.label_tag }}</b></div>
+                                <div class="col-md-5">{{ form.edadAnos }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-4">
+                            <div class="row">
+                                <div class="col-md-5"><b>{{ form.edadMeses.label_tag }}</b></div>
+                                <div class="col-md-5">{{ form.edadMeses }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mr-3">
+                        <div class="col-md-8">{{ form.fotoAdopcion.label_tag }}</div>
+                        <div class="">{{ form.fotoAdopcion }}</div>
+                    </div>
+                    <div class="form-group row mr-1">
+                        <div class="">{{ form.descripcionAdop.label_tag }} </div>
+                        <div class="col-md-12">{{ form.descripcionAdop }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingTwo">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-plus-square"></i> ACTUALIZAR DATOS BASICOS DEL ANIMAL DE COMPAÑIA
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    {% for field1 in form1 %}
+                        <div class="form-group row">
+                            <div class="col-md-4 ">
+                                {{ field1.label_tag }}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="">
+                                    {{ field1 }}
+                                </div>
+                                <div class="">
+                                    {% for error1 in field1.errors %}
+                                        <span style="color: red">({{ error1 }})</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formSec %}
+    <div class="accordion" id="accordionExample1">
+        <div class="card card-blue">
+            <div class="card-header" id="headingThree">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-plus-square"></i>REGISTRAR DATOS DEL ADOPTANTE
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
+                <div class="card-body text-info">
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Nombre.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Nombre }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Apellido.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Apellido }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Carnet.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Carnet }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Extencion.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Extencion }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Genero.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Genero }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form2.email.label_tag }}</div>
+                        <div class="col-md-8">{{ form2.email }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Fecha_Nac.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Fecha_Nac }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Celular.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Celular }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form2.ocupacion.label_tag }}</div>
+                        <div class="col-md-8">{{ form2.ocupacion }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form2.tipo_vivienda.label_tag }}</div>
+                        <div class="col-md-8">{{ form2.tipo_vivienda }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Departamento.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Departamento }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Ciudad.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Ciudad }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Dir_zona.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Dir_zona }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Dir_calleOt.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Dir_calleOt }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Dir_num.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Dir_num }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Edif.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Edif }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form3.Dep.label_tag }}</div>
+                        <div class="col-md-8">{{ form3.Dep }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form2.contactoReferencia.label_tag }}</div>
+                        <div class="col-md-8">{{ form2.contactoReferencia }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">{{ form2.nomContactoRef.label_tag }}</div>
+                        <div class="col-md-8">{{ form2.nomContactoRef }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingFour">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fas fa-plus-square"></i> REGISTRAR DOCUMENTOS DE ADOPCIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample1">
+                <div class="card-body text-blue">
+                    <div class="form-group">
+                        <div>{{ form4.docCroquis.label_tag }}</div>
+                        <div class="col-md-10">{{ form4.docCroquis }}</div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div>{{ form4.docServicio.label_tag }}</div>
+                        <div class="col-md-10">{{ form4.docServicio }}</div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div>{{ form4.docCarnet.label_tag }}</div>
+                        <div class="col-md-10">{{ form4.docCarnet }}</div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div>{{ form4.docCompromiso.label_tag }}</div>
+                        <div class="col-md-10">{{ form4.docCompromiso }}</div>
+                    </div>
+                    <hr>
+                    <div class="form-group row mr-1">
+                        <div class="">{{ form4.descripcion.label_tag }} </div>
+                        <div class="col-md-12">{{ form4.descripcion }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formTer %}
+    <div class="accordion" id="accordionExample2">
+        <div class="card card-blue">
+            <div class="card-header row text-uppercase" id="headingFive">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link " type="button" data-toggle="collapse"
+                            data-target="#collapseFive"
+                            aria-expanded="true" aria-controls="collapseFive">
+                        <i class="fas fa-plus-square"></i> TIPO DE ALIMENTACIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="col-md-7 col-sm-6 text-uppercase"> {{ form5.tipoAlim.label_tag }} </div>
+                            <div class="col-md-5 col-sm-6">{{ form5.tipoAlim }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingSix">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <i class="fas fa-plus-square"></i> ENFERMEDADES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-3"> {{ form5.moquillo }}
+                                <div class="ml-2">{{ form5.moquillo.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.parvovirus }}
+                                <div class="ml-2">{{ form5.parvovirus.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.rabia }}
+                                <div class="ml-2">{{ form5.rabia.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.cutaneaos }}
+                                <div class="ml-2">{{ form5.cutaneaos.label }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-3"> {{ form5.parasitos }}
+                                <div class="ml-2 ">{{ form5.parasitos.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.desnutricion }}
+                                <div class="ml-2">{{ form5.desnutricion.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.Depresion }}
+                                <div class="ml-2">{{ form5.Depresion.label }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-3"> {{ form5.Ansiedad }}
+                                <div class="ml-2">{{ form5.Ansiedad.label }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">{{ form5.masInfoEnfer.label_tag }}</div>
+                    <div>{{ form5.masInfoEnfer }}</div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingSeven">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        <i class="fas fa-plus-square"></i>ACERCA DEL ESTADO REPRODUCTIVO
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-3">
+                            <div class="row"> {{ form5.esterilizacion.label_tag }}
+                                <div class="ml-4"><b>{{ form5.esterilizacion }}</b></div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form5.fechaEster.label_tag }}
+                                <div class="ml-4">{{ form5.fechaEster }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form5.codigoEster.label_tag }}
+                                <div class="ml-2">{{ form5.codigoEster }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-3 mt-3">
+                            <div class="row"> {{ form5.gestacion.label_tag }}
+                                <div class="ml-4"><b>{{ form5.gestacion }}</b></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ml-2">{{ form5.infoGesta.label_tag }}</div>
+                        <div>{{ form5.infoGesta }}</div>
+                        <div class="row ml-3 mt-2">
+                            <div class="row"> {{ form5.lactancia.label_tag }}
+                                <div class="ml-4"><b>{{ form5.lactancia }}</b></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 ml-2">{{ form5.infoLac.label_tag }}</div>
+                        <div>{{ form5.infoLac }}</div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingEight">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LA SOCIALIZACION
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div class="bg-success">Si el animal de compañia no es apto para convivir con cierto criterio a
+                        continuacion
+                        deseleccione el campo correspondiente.
+                    </div>
+                    <hr>
+                    <div style="line-height: 90%;">
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con NIÑOS MENORES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probCNinosMenores }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADOLECENTES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probCAdol }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con JOVENES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probCjovenes }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADULTOS?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probCAdultos }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con ADULTOS MAYORES?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probCAdultosM }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con personas del genero FEMENINO?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 font-weight-bold text-center">
+                                {{ form5.probMujeres }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con personas del genero MASCULINO?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form5.probHombres }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con otro(s) CAN(ES) (PERROS)?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form5.probSocialPerros }}
+                            </div>
+                        </div>
+                        <div class="row ml-1 mb-2">
+                            <div class="col-9 font-weight-bold">
+                                ¿Es apto para convivir con otro(s) FELINO(S) (GATOS)?
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 mt-3 font-weight-bold text-center">
+                                {{ form5.probSocialGatos }}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="mt-2 " style="line-height: 80%;">{{ form5.masInfoProbSoc.label_tag }}</div>
+                    <div>{{ form5.masInfoProbSoc }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingNine">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS DISCAPACIDADES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2">
+                            <div class="row col-md-6 col-sm-6"> {{ form5.discapacidad }}
+                                <div class="ml-4"><b>{{ form5.discapacidad.label }}</b></div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form5.Tipodiscapacidad.label_tag }}
+                                <div class="ml-2">{{ form5.Tipodiscapacidad }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>{{ form5.masInfoDisca.label_tag }}</div>
+                    <div>{{ form5.masInfoDisca }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingTen">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS VACUNAS
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form5.tipoVacuna.label_tag }}
+                                <div class="ml-2">{{ form5.tipoVacuna }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form5.ultimaFechaV.label_tag }}
+                                <div class="ml-2">{{ form5.ultimaFechaV }}</div>
+                            </div>
+                        </div>
+                        <div class="row ml-2 mt-2">
+                            <div class="row col-md-6 col-sm-6"> {{ form5.vacAntirrabica.label_tag }}
+                                <div class="ml-4">{{ form5.vacAntirrabica }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form5.ultimaFechaReb.label_tag }}
+                                <div class="ml-2">{{ form5.ultimaFechaReb }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-1">{{ form5.masInfoVac.label_tag }}</div>
+                        <div>{{ form5.masInfoVac }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingEleven">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                        <i class="fas fa-plus-square"></i> ACERCA DE LAS DESPARASITACIONES
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div style="line-height: 80%;">
+                        <div class="row ml-2 mt-1">
+                            <div class="row col-md-6 col-sm-6"> {{ form5.desparacitacion.label_tag }}
+                                <div class="ml-4">{{ form5.desparacitacion }}</div>
+                            </div>
+                            <div class="row col-md-6 col-sm-6"> {{ form5.ultimaFechaDes.label_tag }}
+                                <div class="ml-2">{{ form5.ultimaFechaDes }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-1">{{ form5.masInfoDes.label_tag }}</div>
+                    <div>{{ form5.masInfoDes }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-blue">
+            <div class="card-header" id="headingTwelve">
+                <h4 class="mb-0">
+                    <button class="text-white btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                        <i class="fas fa-plus-square"></i> MAS INFORMACION RESPECTO A LA EVALUACIÓN
+                    </button>
+                </h4>
+            </div>
+            <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionExample2">
+                <div class="card-body">
+                    <div class="mt-1 ml-2">{{ form5.descripcionEval.label_tag }}</div>
+                    <div>{{ form5.descripcionEval }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

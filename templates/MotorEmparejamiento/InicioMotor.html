@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!--<div class="container bg-light"> -->
+{% block entity %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+
+{% block contenido %}
+        <hr>
+        <div class="card card-primary" style="background-color: #043c75">
+            <div class="card-header">
+                <h1 class="card-title text-center">{{ titulo }}</h1>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 card card-comment text-justify">
+                        <h6>
+                            <!---
+                            <p class="text-center">ENCUENTRA A TU MASCOTA IDEAL</p>-->
+                            <hr>
+                            Es un motor de emparejamiento y busqueda que te ofrece esta
+                            aplicacion web. Consiste en que nos proporciones los parametros de busqueda, consultando
+                            datos se realizara el emparejamiento con los animales de compañia que coincidan con la
+                            busqueda para darte opciones mas concretas para que puedas adoptar. Para acceder al sistema
+                            de emparejamiento se requiere que te registres e inicies sesion.
+                        </h6>
+
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="card-header bg-light">
+                    <h4 class=" text-center">Tipos de emparejamiento</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6 ">
+                        <a href="{% url 'motor:InfoAlg' %}">
+                            <div class="card">
+                                <img src="{% static 'img/Materialinfo/AlgEmp.png' %}" style="object-fit: cover">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="{% url 'motor:InfoSis' %}">
+                            <div class="card">
+                                <img src="{% static 'img/Materialinfo/SisRec.png' %}" style="object-fit: cover">
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+
+{% endblock %}

@@ -1,0 +1,201 @@
+<!-- Imagenes rellenas  -->
+{% for organizacion in object_list %}
+    <div class="row row-cols-1 row-cols-md-3">
+        <a class="button " href="detalleOrg/{{ organizacion.id }}">
+            <div class="col mb-4">
+                <div class="card-header bg-info"><h4>{{ organizacion.nomorganizacion }}</h4></div>
+                <div class="card h-100">
+                    <div class="card-outline w-100 text-center">
+                        <div class="embed-responsive embed-responsive-4by3 ">
+                            {% if  organizacion.fotografia %}
+                                <img alt="Card image cap" class=" embed-responsive-item"
+                                     src="{{ organizacion.fotografia.url }}"/>
+                            {% else %}
+                                <p>No se cargo correctamente la imagen</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="card-footer bg-info text-center"><h6><i class="fas fa-info-circle"></i> ¿Quiere
+                        saber más?</h6></div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+{% endfor %}
+<!-- -->
+{% if object_list %}
+    <div class="row h-100">
+
+        {% for organizacion in object_list %}
+            <a class="button " href="detalleOrg/{{ organizacion.id }}">
+                <div class="col-md-12 h-100">
+                    <div class="card-header bg-info"><h5>{{ organizacion.nomorganizacion }}</h5></div>
+                    <div class="card">
+                        {% if  organizacion.fotografia %}
+                            <img class="img-fluid " alt="Responsive Image" width="300" height="260"
+                                 src="{{ organizacion.fotografia.url }}"/>
+                        {% else %}
+                            <p>No se cargo correctamente la imagen</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+
+        {% endfor %}
+    </div>
+{% else %}
+    <h3 style="color: white">No existe organizaciones protectoras registradas</h3>
+{% endif %}
+<!-- -->
+<div class="row">
+    {% for organizacion in object_list %}
+        <div class="col-md-4">
+            <a class="button " href="detalleOrg/{{ organizacion.id }}">
+                <div class="card bg bg-white" style="height: 450px">
+                    <div class="card-header bg-info align-middle" style="height: 75px">
+                        <div class="tituloss align-content-md-center">
+                            {{ organizacion.nomorganizacion }}
+                        </div>
+                    </div>
+                    <div class="align-middle">
+                        {% if  organizacion.fotografia %}
+                            <img class="img-fluid rounded mx-auto d-block"
+                                 style="width: auto; height: 325px"
+                                 src="{{ organizacion.fotografia.url }}"/>
+                        {% else %}
+                            <p>No se cargo correctamente la imagen</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-info text-center" style="height: 50px">
+                        <h6><i class="fas fa-info-circle"></i> ¿Quiere saber más?</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+<!-- imagenes lista animales-->
+<div class="row row-cols-1 row-cols-md-3">
+    <a href="detalleAnim/{{ animalesAdopcion.slug }}">
+        <div class="col mb-4">
+            <div class="card-header bg-info"><h4>{{ animalesAdopcion.animal.nombre }}
+                - {{ animalesAdopcion.animal.organizacion.nomorganizacion }}</h4></div>
+            <div class="card h-100">
+                <div class="embed-responsive embed-responsive-1by1">
+                    <img alt="Card image cap" class="card-img-top embed-responsive-item"
+                         src="{{ animalesAdopcion.fotoEnAdopcion.url }}"/>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <h5 class="card-text">
+                        <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.especie }} <br>
+                        <i class="fas fa-check-circle"></i> {{ animalesAdopcion.edad_Anim }} -
+                        {{ animalesAdopcion.edadAnimal }} {{ animalesAdopcion.tipoedadR }}<br>
+                        <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.sexo }}<br>
+                        <i class="fas fa-check-circle"></i> {{ animalesAdopcion.animal.tamano }}<br>
+                        {% if animalesAdopcion.animal.datosMedicos.esterilizacion %}
+                            {% if animalesAdopcion.animal.sexo == 'Hembra' %}
+                                <i class="fas fa-check-circle"></i> Esterilizada <br>
+                            {% elif animalesAdopcion.animal.sexo == 'Macho' %}
+                                <i class="fas fa-check-circle"></i> Castrado <br>
+                            {% endif %}
+                        {% else %}
+                            {% if animalesAdopcion.animal.sexo == 'Hembra' %}
+                                <i class="fas fa-times-circle"></i> Esterilizada <br>
+                            {% elif animalesAdopcion.animal.sexo == 'Macho' %}
+                                <i class="fas fa-times-circle"></i> Castrado <br>
+                            {% endif %}
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="card-footer bg-info text-center"><h6><i class="fas fa-info-circle"></i> ¿Quiere
+                    saber más?</h6></div>
+            </div>
+
+        </div>
+    </a>
+</div>
+
+<!-- -->
+<!-- -->
+{% block formSec %}
+    <div class="card-body bg bg-info">
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.vacOctovalente.label_tag }}</div>
+            <div class="col-md-2">{{ form2.vacOctovalente }}</div>
+        </div>
+
+        <div class="form-group row ">
+            <div class="col-md-10 ">{{ form2.vacDesparacitacion.label_tag }}</div>
+            <div class="col-md-2">{{ form2.vacDesparacitacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.vacAntirrabica.label_tag }}</div>
+            <div class="col-md-2">{{ form2.vacAntirrabica }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.esterilizacion.label_tag }}</div>
+            <div class="col-md-2">{{ form2.esterilizacion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.Depresion.label_tag }}</div>
+            <div class="col-md-2">{{ form2.Depresion }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.Ansiedad.label_tag }}</div>
+            <div class="col-md-2">{{ form2.Ansiedad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 ">{{ form2.discapacidad.label_tag }}</div>
+            <div class="col-md-2">{{ form2.discapacidad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-8 ">{{ form2.Tipodiscapacidad.label_tag }}</div>
+            <div class="col-md-4">{{ form2.Tipodiscapacidad }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10 "><b>¿Es apto para convivir con niños menores?</b></div>
+            <div class="col-md-2 mt-3">{{ form2.probCNinosMenores }}</div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con personas?</b>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form2.probCAdultosM }} <small class="ml-2"> Adultos Mayores<br></small>
+                </div>
+                <div class="row col-md-6">{{ form2.probCAdultos }} <small class="ml-2"> Adultos<br></small></div>
+            </div>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form2.probCjovenes }} <small class="ml-2">Jovenes<br></small></div>
+                <div class="row col-md-6">{{ form2.probCAdol }} <small class="ml-2">Adolecentes<br></small></div>
+            </div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con Algun genero?</b>
+            <div class="row ml-2">
+                <div class="row col-md-6">{{ form2.probMujeres }} <small class="ml-2"> Mujer<br></small></div>
+                <div class="row col-md-6">{{ form2.probHombres }} <small class="ml-2"> Hombre<br></small></div>
+            </div>
+        </div>
+        <div><b>¿Tiene problemas de socialización con otro animal?</b>
+            <div class="row ml-2">
+                <div class="row col-md-4">{{ form2.probSocialPerros }} <small class="ml-2"> Perros<br></small></div>
+                <div class="row col-md-4">{{ form2.probSocialGatos }} <small class="ml-2"> Gatos<br></small></div>
+                <div class="row col-md-4">{{ form2.probSocialOtros }} <small class="ml-2"> Otros<br></small></div>
+            </div>
+        </div>
+
+        <div>{{ form2.descripcionEval.label_tag }}</div>
+        <div>{{ form2.descripcionEval }}</div>
+    </div>
+
+    {% if form2.errors %}
+        <div class="">
+            {% for error in field.errors %}
+                <span style="color: red">({{ error }})</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+<!-- -->

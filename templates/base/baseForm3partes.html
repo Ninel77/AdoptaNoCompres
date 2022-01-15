@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    {% if entity_anterior_url %}
+        <li class="breadcrumb-item"><a href="{{ entity_anterior_url }}"><b>{{ entity_anterior }}</b></a></li>
+    {% endif %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h4 class="text-uppercase font-weight-bold">{{ titulo }}</h4>
+    </div>
+    {% block verificar %}
+
+    {% endblock %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if accion == 'Actualizar' %}
+            <div class="row mt-1 ">
+                <div class="col-md-5">
+                    <button class="btn btn-block bg-gradient-success " type="submit"><i class="fas fa-save"></i>
+                        {{ accion }}</button>
+                </div>
+                <div class="col-md-5">
+                    <a href="{{ entity_cancelar }}" class="btn btn-block bg-gradient-danger ">
+                        <i class="fas fa-undo-alt"></i>{{ accion2 }}</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="{{ accion_limpiar }}" class="btn btn-block bg-gradient-info ">
+                        <i class="fas fa-trash-alt"></i> {{ accionlimpiar }}</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% block errores %}
+
+        {% endblock %}
+        {% if not mensajeEdad %}
+            <div class="alert alert-danger mt-2 text-uppercase font-weight-bold" role="alert">
+                {{ mensaje }}
+            </div>
+        {% endif %}
+
+        <div class="card mt-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center" style="color: #043c75">
+                        <h4 class="mt-2 mb-2">{{ tituloPrim }}</h4>
+                    </div>
+                    <hr>
+                    {% block formPrim %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-4 bg bg-info">
+                    <div class="text-center mt-2" style="color: #FFFFFF">
+                        <h4 class="mt-2">{{ tituloSec }}</h4>
+                        <hr>
+                    </div>
+                    {% block formSec %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mt-2" style="color: #043c75">
+                        <h4>{{ tituloTer }}</h4>
+                    </div>
+                    <hr>
+                    {% block formTer %}
+
+                    {% endblock %}
+                </div>
+
+            </div>
+            {% if accion == 'Registrar' %}
+                <div class="row ">
+                    <div class="col-md-6 col-sm-6">
+                        <button class="btn btn-block bg-gradient-success font-weight-bold text-uppercase"
+                                type="submit"><i class="fas fa-save"></i> {{ accion }}</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <a class="btn bg-gradient-danger btn-block font-weight-bold text-uppercase"
+                           href="{{ entity_cancelar_url }}"><i class="fas fa-undo-alt"></i> {{ entity_cancelar }}</a>
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+    </form>
+
+    <div class="row mb-2 ml-2  "></div>
+{% endblock %}

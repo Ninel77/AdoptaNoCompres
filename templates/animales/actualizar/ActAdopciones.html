@@ -1,0 +1,21 @@
+{% extends 'base/baseForm1col.html' %}
+{% load static %}
+{% block formPrin %}
+    {% for field in form %}
+        <p>
+        <div class="input-group-append">
+            <div class="col-md-3 text-right" style="">{{ field.label_tag }}</div>
+            <div class="col-md-9">
+                <div class="">
+                    {{ field }}
+                </div>
+                <div class="">
+                    {% for error in field1.errors %}
+                        <span style="color: red">({{ error }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </p>
+    {% endfor %}
+{% endblock %}

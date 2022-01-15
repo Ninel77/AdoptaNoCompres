@@ -1,0 +1,158 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+
+{% block tituloPerfil %}
+    <div class="row">
+        <h4 class=" card-header">{{ adoptante.persona.Nombre }} - {{ adoptante.persona.Apellido }}</h4>
+    </div>
+{% endblock %}
+
+{% block InfoPerfil %}
+    <div class="text-right mr-3">
+        <a href="{% url 'animal:ActAdoptante' adoptante.id %}" type="button"
+           class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos del Adoptante</a>
+    </div>
+    <hr>
+    <div class="row container">
+        <div class="col-md-3 text-uppercase font-weight-bold">
+            <div class="card">
+                <h6 class="card-body text-uppercase">Animales Adoptados:</h6>
+            </div>
+            <hr>
+            {% for animal in animales %}
+                <div class="card card-body">
+                    <div>
+                        <h6>Codigo:</h6>
+                        <h5 class="text-right">{{ animal.animal.slug }}</h5>
+                    </div>
+                    <div>
+                        <h6>Nombre:</h6>
+                        <h5 class="text-right">{{ animal.animal.nombre }}</h5>
+                    </div>
+                    <div>
+                        <h6>Especie:</h6>
+                        <h5 class="text-right">{{ animal.animal.especie }}</h5>
+                    </div>
+                    <div>
+                        <h6>Raza:</h6>
+                        <h5 class="text-right">{{ animal.animal.raza.raza }}</h5>
+                    </div>
+                    <hr>
+                </div>
+
+            {% endfor %}
+        </div>
+        <div class="col-md-9">
+            <div class="row text-uppercase">
+                <div class="col-md-6 ">
+                    <div class="card card-body">
+                        <div class="row text-uppercase ">
+                            <p class="font-weight-bold">Nombre del adoptante:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Nombre }}</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Apellido }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Carnet de Identidad:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Carnet }}-{{ adoptante.persona.Extencion }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Sexo:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Genero }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Fecha de Nacimiento:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Fecha_Nac }}</p>
+                        </div>
+                        <div class="row ">
+                            <p class="font-weight-bold">Correo:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.email }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Ocupación:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.ocupacion }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Telefono Fijo:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Telefono }}</p>
+                        </div>
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Celular:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Celular }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="card card-body">
+                        <div class="row text-uppercase">
+                            <p class="font-weight-bold">Contacto de referencia:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.contactoReferencia }}</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.nomContactoRef }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Tipo de vivienda:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.tipo_vivienda }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Departamento:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Departamento }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Ciudad:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Ciudad }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Zona:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Dir_zona }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Dirección:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Dir_calleOt }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="font-weight-bold">Nro de vivienda/Edificio:</p>
+                            <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                {{ adoptante.persona.Dir_num }}
+                            </p>
+                        </div>
+                        {% if adoptante.persona.Edif %}
+                            <div class="row">
+                                <p class="font-weight-bold">Nombre del Edificio:</p>
+                                <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                    {{ adoptante.persona.Edif }}
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="font-weight-bold">Nro del Departamento:</p>
+                                <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                    {{ adoptante.persona.Dep }}
+                                </p>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

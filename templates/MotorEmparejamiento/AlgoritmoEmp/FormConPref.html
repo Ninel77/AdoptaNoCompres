@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item font-weight-bold"><a href="{% url 'motor:InicioMotor' %}">Tipos de emparejamiento</a></li>
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h5>{{ titulo }}</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary mt-2">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <h4 class="text-center">Ingrese los siguientes datos</h4></div>
+                    <hr>
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>
+                        <div class="bg-info text-uppercase font-weight-bold text-center">Datos del Can (Perro)</div>
+                        <div class="form-group">
+                            {{ form.edad_can.label_tag }}
+                            {{ form.edad_can }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.tamano_can.label_tag }}
+                            {{ form.tamano_can }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.sexo_can.label_tag }}
+                            {{ form.sexo_can }}
+                        </div>
+                        <div class="bg-info text-uppercase font-weight-bold text-center">Datos de la persona</div>
+                        <div class="form-group">
+                            {{ form.edad_per.label_tag }}
+                            {{ form.edad_per }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.sex_per.label_tag }}
+                            {{ form.sex_per }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.dispnib_tiempo.label_tag }}
+                            {{ form.dispnib_tiempo }}
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                {{ form.ninos_menores.label_tag }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.ninos_menores }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                {{ form.otro_can.label_tag }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.otro_can }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                {{ form.otro_gato.label_tag }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.otro_gato }}
+                            </div>
+                        </div>
+                        </p>
+                        <button class="btn btn-block btn-success" type="submit">Buscar</button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-6">
+            <div class="card mt-2">
+                <img src="{% static 'img/Materialinfo/InfoAlg.png' %}" style="object-fit: cover">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

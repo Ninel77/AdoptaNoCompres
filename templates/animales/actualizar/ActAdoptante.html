@@ -1,0 +1,115 @@
+{% extends 'base/baseForm2col.html' %}
+{% load static %}
+{% block errores %}
+    {% if form2.errors %}
+        <div class="card">
+            {% for field2 in form2 %}
+                {% for error2 in field2.errors %}
+                    <span style="color: red"> {{ field2.label_tag }} ({{ error2 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if form.errors %}
+        <div class="card">
+            {% for field2 in form %}
+                {% for error2 in field2.errors %}
+                    <span style="color: red"> {{ field2.label_tag }} ({{ error2 }})</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+{% block formPrin %}
+    <div class="card-body" style="background-color: #043c75">
+        <div class="form-group row">
+            <div class="col-md-4 text-white">{{ form.estado.label_tag }}</div>
+            <div class="col-md-8">{{ form.estado }}</div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4 text-white">{{ form.obsMalAdop.label_tag }}</div>
+            <div class="col-md-8">{{ form.obsMalAdop }}</div>
+        </div>
+    </div>
+    <div class="form-group row mt-3">
+        <div class="col-md-4">{{ form2.Nombre.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Nombre }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Apellido.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Apellido }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Genero.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Genero }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Fecha_Nac.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Fecha_Nac }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Carnet.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Carnet }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Extencion.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Extencion }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form.email.label_tag }}</div>
+        <div class="col-md-8">{{ form.email }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form.ocupacion.label_tag }}</div>
+        <div class="col-md-8">{{ form.ocupacion }}</div>
+    </div>
+
+{% endblock %}
+
+{% block formSec %}
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Celular.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Celular }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form.contactoReferencia.label_tag }}</div>
+        <div class="col-md-8">{{ form.contactoReferencia }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form.nomContactoRef.label_tag }}</div>
+        <div class="col-md-8">{{ form.nomContactoRef }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form.tipo_vivienda.label_tag }}</div>
+        <div class="col-md-8">{{ form.tipo_vivienda }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Departamento.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Departamento }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Ciudad.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Ciudad }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Dir_zona.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Dir_zona }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Dir_calleOt.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Dir_calleOt }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Dir_num.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Dir_num }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Edif.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Edif }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{{ form2.Dep.label_tag }}</div>
+        <div class="col-md-8">{{ form2.Dep }}</div>
+    </div>
+{% endblock %}

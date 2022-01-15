@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item"><a href="">{{ entity }}</a></li>
+{% endblock %}
+{% block cuerpo %}
+    <div class="wrapper mt-3">
+        <div class="row ">
+            <div class="col-md-2 "></div>
+            <div class="col-md-4 bg-light">
+                <div class="card card-body">
+                    <img src="{% static 'img/Materialinfo/inicioSesion.png' %}" style="object-fit: cover">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mt-5">
+                    <div class="card-body login-card-body">
+                        <h4 class="login-box-msg text-center " style="background-color: #043c75; color: white"><b>Inicio de Sesion</h4>
+                        {% if message %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <p>
+                                    {{ field.label_tag }}<br>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                    {{ field }}
+                                </div>
+                                {% for error in field.errors %}
+                                    <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                                </p>
+                            {% endfor %}
+                            <button class="btn btn-block btn-success font-weight-bold text-uppercase" type="submit">Iniciar Sesion</button>
+                        </form>
+
+                        <!-- /.social-auth-links -->
+
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-center links">
+                                No tienes cuenta? <a href="{% url 'Registro' %}" class="ml-2">Registrate</a>
+                            </div>
+                            <div class="d-flex justify-content-center links">
+                                <a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.login-card-body -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'include/footer.html' %}
+{% endblock %}

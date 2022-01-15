@@ -1,0 +1,34 @@
+{% extends 'base/basePerfilesM.html' %}
+{% load static %}
+{% block tituloPerfil %}
+    <h4 class="card-body">{{ titulo }}</h4>
+{% endblock %}
+{% block nav %}
+    <nav class="navbar navbar-expand-lg bg bg-primary text-center mt-2">
+        <div class="bg bg-white font-weight-bold " id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active border border-info">
+                    <a class="nav-link btn-outline-success text-uppercase"
+                       href="{% url 'rep:reportesOrganizacion:GrepOrg(general)' %}">Reporte General de los Animales de Compañia<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item border border-info">
+                    <a class="nav-link text-uppercase" href="{% url 'rep:reportesOrganizacion:CrepOrg(general)' %}">reporte de solo la
+                        especie canina</a>
+                </li>
+                <li class="nav-item border border-info">
+                    <a class="nav-link text-uppercase" href="{% url 'rep:reportesOrganizacion:FrepOrg(general)' %}">reporte de solo la
+                        especie felina</a>
+                </li>
+                <li class="nav-item border border-info">
+                    <a class="nav-link text-uppercase" href="{% url 'rep:reportesOrganizacion:OrepOrg(general)' %}">reporte de solo la
+                        especie Otros</a>
+                </li>
+                <li class="nav-item border border-info">
+                    <a class="nav-link text-uppercase" href="{% url 'rep:reportesOrganizacion:Org' %}">reporte respecto a la
+                        organizacion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

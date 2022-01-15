@@ -1,0 +1,312 @@
+{% extends 'base/basePerfil.html' %}
+{% load static %}
+
+{% block tituloPerfil %}
+    <div class="row">
+        <h4>{{ animal.nombre }} - {{ animal.organizacion.nomorganizacion }}</h4>
+    </div>
+{% endblock %}
+{% block imagenPerfil %}
+
+    {% if animalResc.fotoRescate %}
+        <div class="content-header bg bg-light">Foto de rescate</div>
+        <img class="img-fluid" src="{{ animalResc.fotoRescate.url }}"
+             width="320" height="480"/>
+    {% else %}
+        <h3>Error al cargar imagen</h3>
+    {% endif %}
+    {% if animalEnAdop.fotoEnAdopcion %}
+        <div class="content-header bg bg-light">Foto en Adopcion</div>
+        <img class="img-fluid" src="{{ animalEnAdop.fotoEnAdopcion.url }}"
+             width="320" height="480"/>
+    {% endif %}
+    {% if animalAdop.fotoAdopcion %}
+        <div class="content-header bg bg-light">Foto de la Adopcion</div>
+        <img class="img-fluid" src="{{ animalAdop.fotoAdopcion.url }}"
+             width="320" height="480"/>
+    {% endif %}
+{% endblock %}
+{% block InfoPerfil %}
+    <div class="row mt-4 bg bg-light">
+        <nav class="w-100">
+            <div class="nav nav-tabs" id="product-tab" role="tablist">
+                <a class="nav-item nav-link active" id="datosAnim-tab" data-toggle="tab" href="#datosAnim"
+                   role="tab" aria-controls="datosAnim" aria-selected="false">Datos Basicos</a>
+                <a class="nav-item nav-link " id="datosAnimm-tab" data-toggle="tab" href="#datosAnimm"
+                   role="tab" aria-controls="datosAnimm" aria-selected="false">Datos Evaluacion</a>
+                <a class="nav-item nav-link" id="datosRes-tab" data-toggle="tab" href="#datosRes"
+                   role="tab" aria-controls="datosRes" aria-selected="false">Datos Rescate</a>
+                <a class="nav-item nav-link" id="datosEnAdop-tab" data-toggle="tab" href="#datosEnAdop"
+                   role="tab" aria-controls="datosEnAdop" aria-selected="false">Datos En Adopcion</a>
+                <a class="nav-item nav-link" id="datosAdop-tab" data-toggle="tab" href="#datosAdop"
+                   role="tab" aria-controls="datosAdop" aria-selected="false">Datos Adopcion </a>
+            </div>
+        </nav>
+        <div class="tab-content p-4" id="nav-tabContent">
+            <div class="tab-pane fade active show" id="datosAnim" role="tabpanel" aria-labelledby="datosAnim-tab">
+                -----------------------------------------------------------------------------------------------------
+                <div class="text-right mt-4">
+                    <a href="{% url 'animal:ActDatosAnim' animal.id %}" type="button"
+                       class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos del Animal de Compañia</a>
+                </div>
+                <hr>
+                <div>
+                    <h6>Nombre:<h5 class="text-right">{{ animal.nombre }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Especie:<h5 class="text-right">{{ animal.especie }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Raza:<h5 class="text-right">{{ animal.raza }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Tamaño:<h5 class="text-right">{{ animal.tamano }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Genero:<h5 class="text-right">{{ animal.sexo }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Color pelaje principal:<h5 class="text-right">{{ animal.color1 }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Color Pelaje secundario:<h5 class="text-right">{{ animal.color2 }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Organizacion:<h5 class="text-right">{{ animal.organizacion.nomorganizacion }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Estado dentro de la organizacion:<h5 class="text-right">{{ animal.estado }}</h5></h6>
+                </div>
+                <div>
+                    <h6>Descripcion de las caracteristicas del animal:<h5 class="text-right">{{ animal.descripcion }}
+                    </h5></h6>
+                </div>
+                <hr>
+
+            </div>
+            <div class="tab-pane fade active show" id="datosAnimm" role="tabpanel" aria-labelledby="datosAnimm-tab">
+                -----------------------------------------------------------------------------------------------------
+                <div class="text-right mt-4">
+                    <a href="{% url 'animal:ActEvalAnim' animal.id %}" type="button"
+                       class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos de la evaluacion</a>
+                </div>
+                <hr>
+                <div>
+                    <h6>Vacuna Octovalente:<h5 class="text-right">
+                        {% if evalM.vacOctovalente %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6>Vacuna Desparacitante:<h5 class="text-right">
+                        {% if evalM.vacDesparacitacion %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6>Vacuna Antirrabica:<h5 class="text-right">
+                        {% if evalM.vacAntirrabica %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6>Muestra algun tipo de Discapacidad:<h5 class="text-right">
+                        {% if evalM.discapacidad %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6>Muestra algun tipo de traumas al interactual con personas:<h5 class="text-right">
+                        {% if evalM.traumasPersonas %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6>Muestra algun tipo de trauma al interactual con otros perros:<h5 class="text-right">
+                        {% if evalM.traumasPerros %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6> ¿Esta Esterilizado?:<h5 class="text-right">
+                        {% if evalM.esterilizacion %} Si {% else %} No{% endif %}
+                    </h5></h6>
+                </div>
+                <div>
+                    <h6> Observacion:<h5 class="text-right"> {{ evalM.descripcionEval }}
+
+                    </h5></h6>
+                </div>
+
+                <hr>
+
+            </div>
+            <div class="tab-pane fade" id="datosRes" role="tabpanel" aria-labelledby="datosRes-tab">
+                -----------------------------------------------------------------------------------------------------
+                <div class="text-right mt-4">
+                    <a href="{% url 'animal:ActRehab' animalResc.id %}" type="button"
+                       class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos Rescate</a>
+                </div>
+                <hr>
+                <div>
+                    <h6>Edad Rescate:<h5 class="text-right">{{ animalResc.edadRescate }} {{ animalResc.tipoedadR }}</h5>
+                    </h6>
+                </div>
+                <div>
+                    <h6>Voluntario Encargado:<h5 class="text-right">
+                        {{ animalResc.voluntarioAcargo.user.persona.Nombre }}
+                        {{ animalResc.voluntarioAcargo.user.persona.Apellido }} -
+                        {{ animalResc.voluntarioAcargo.user.persona.Carnet }}(
+                        {{ animalResc.voluntarioAcargo.user.persona.Extencion }})</h5>
+                    </h6>
+                </div>
+                <div>
+                    <h6>Fecha de Rescate:<h5 class="text-right">{{ animalResc.Fecha_Rescate }} - </h5></h6>
+                </div>
+                <div>
+                    <h6>Descripcion del Rescate:<h5 class="text-right">{{ animalResc.descripcionRescate }} - </h5></h6>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="datosEnAdop" role="tabpanel" aria-labelledby="datosEnAdop-tab">
+                -----------------------------------------------------------------------------------------------------
+                <div class="text-right mt-4">
+                    {% if animalEnAdop == None %}
+                        <a href="{% url 'animal:PonerEnAdop' animal.slug %}" type="button"
+                           class="btn btn-primary "><i class="fas fa-edit"></i> Poner en Adopcion</a>
+                    {% else %}
+                        <a href="{% url 'animal:ActEnAdop' animalEnAdop.id %}" type="button"
+                           class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar Poner en Adopcion</a>
+                    {% endif %}
+                </div>
+                <hr>
+                {% if animalEnAdop == None %}
+                    <div class="alert alert-danger">{{ message1 }}</div>
+                {% else %}
+                    <div>
+                        <h6>Rango de edad del animal en adopción:<h5
+                                class="text-right">{{ animalEnAdop.edad_Anim }}</h5>
+                        </h6>
+                    </div>
+                    <div>
+                        <h6>Edad especifica del animal en adopción:<h5
+                                class="text-right">{{ animalEnAdop.edadAnimal }} {{ animalEnAdop.tipoedadR }}</h5>
+                        </h6>
+                    </div>
+                    <div>
+                        <h6>Fecha En adopción:<h5
+                                class="text-right">{{ animalEnAdop.fecha_en_Adopcion }}</h5>
+                        </h6>
+                    </div>
+                    <div>
+                        <h6>Voluntario A Cargo:<h5
+                                class="text-right">{{ animalEnAdop.voluntarioAcargo }}</h5>
+                        </h6>
+                    </div>
+                    <div>
+                        <h6>Descripcion para la socializacion de la adopción:<h5
+                                class="text-right">{{ animalEnAdop.descripcionEnAdop }}</h5>
+                        </h6>
+                    </div>
+                {% endif %}
+
+            </div>
+            <div class="tab-pane fade" id="datosAdop" role="tabpanel" aria-labelledby="datosAdop-tab">
+                -----------------------------------------------------------------------------------------------------
+
+                <div class="text-right mt-4">
+                    {% if animalAdop == None %}
+                        <a href="{% url 'animal:RegistrarAdop' animal.slug %}" type="button"
+                           class="btn btn-primary "><i class="fas fa-edit"></i> Registrar Adopcion</a>
+                    {% else %}
+                        <a href="{% url 'animal:ActAdop' animalAdop.id %}" type="button"
+                           class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos Adopcion</a>
+                    {% endif %}
+                    <hr>
+                    {% if animalAdop == None %}
+                        <div class="alert alert-danger">{{ message2 }}</div>
+                    {% else %}
+                        <hr>
+                        <h5 class="text-left">Datos de la Adopcion</h5>
+                        <hr>
+                        <div>
+                            <h6>Voluntario a cargo:<h5 class="text-right">
+                                {{ animalAdop.voluntarioAcargo.user.persona.Nombre }}
+                                {{ animalAdop.voluntarioAcargo.user.persona.Apellido }} -
+                                {{ animalAdop.voluntarioAcargo.user.persona.Carnet }}(
+                                {{ animalAdop.voluntarioAcargo.user.persona.Extencion }})</h5>
+                            </h6>
+                        </div>
+                        <div>
+                            <h6>Fecha de adopción:<h5
+                                    class="text-right">{{ animalAdop.fechaRegistroAdop }}</h5>
+                            </h6>
+                        </div>
+                        <div>
+                            <h6>Descripcion de la adopcion:<h5
+                                    class="text-right">{{ animalAdop.descripcionAdop }}</h5>
+                            </h6>
+                        </div>
+                        <div>
+
+                            <hr>
+                            <h5 class="text-left">Datos del Adoptante</h5>
+                            <hr>
+                            <div>
+                                <h6>Adoptante:<h5
+                                        class="text-right"> {{ animalAdop.adoptante.persona.Nombre }}
+                                    {{ animalAdop.adoptante.persona.Apellido }}
+                                    - {{ animalAdop.adoptante.persona.Carnet }}
+                                    {{ animalAdop.adoptante.persona.Extencion }}</h5>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>Ocupacion:<h5
+                                        class="text-right"> {{ animalAdop.adoptante.ocupacion }}
+                                </h5>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>Tipo de Vivienda:<h5
+                                        class="text-right"> {{ animalAdop.adoptante.tipo_vivienda }}
+                                </h5>
+                                </h6>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <hr>
+                            <h5 class="text-left">Documentos de adopcion</h5>
+                            <hr>
+
+                            <h6>Croquis:
+                                {% if animalAdop.documentos.docCroquis %}
+                                    <a href="{{ animalAdop.documentos.docCroquis.url }}">Documento croquis</a>
+                                {% else %}
+                                    <h5> No se cargo ningun archivo</h5>
+                                {% endif %}
+                            </h6>
+                            <h6>Servicio Basico:
+                                {% if animalAdop.documentos.docServicio %}
+                                    <a href="{{ animalAdop.documentos.docServicio.url }}">Fotocopia servicio basico</a>
+                                {% else %}
+                                    <h5> No se cargo ningun archivo</h5>
+                                {% endif %}
+                            </h6>
+                            <h6>Carnet de Identidad:
+                                {% if animalAdop.documentos.docCarnet %}
+                                    <a href="{{ animalAdop.documentos.docCarnet.url }}">Fotocopia del carnet de
+                                        identidad</a>
+                                {% else %}
+                                    <h5> No se cargo ningun archivo</h5>
+                                {% endif %}
+                            </h6>
+                            <h6>Documento de compromiso:
+                                {% if animalAdop.documentos.docCompromiso %}
+                                    <a href="{{ animalAdop.documentos.docCompromiso.url }}">Documento de compromiso</a>
+                                {% else %}
+                                    <h5> No se cargo ningun archivo</h5>
+                                {% endif %}
+                            </h6>
+                        </div>
+                        </div>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

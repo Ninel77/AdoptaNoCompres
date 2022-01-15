@@ -1,0 +1,147 @@
+{% extends 'base/baseForm2col.html' %}
+{% load static %}
+{% block errores %}
+    {% if form.errors %}
+        <div class="alert alert-danger mt-2" role="alert">
+            {% for error in form.errors %}
+                <span style="color: red">
+                {{ error.label_tag }}({{ error }})
+            </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+{% block formPrin %}
+    <div class="card card-body text-white" style="background-color: #043c75">
+        <div class="text-center text-uppercase"><b>Informacion del encargado de la organizacion</b></div>
+        <hr class="border border-info">
+        <div class="input-group-append">
+            <div class="col-md-4" style="">
+                <b>Nombre del encargado:</b></div>
+            <div class="col-md-8 form-control border border-primary">
+                {{ organizador.user.persona.nombrecompleto }}
+            </div>
+        </div>
+        <div class="input-group-append mt-4">
+            <div class="col-md-4" style="">
+                <b>Contacto:</b></div>
+            <div class="col-md-8  form-control border border-primary">
+                {{ organizador.user.persona.Celular }}
+            </div>
+        </div>
+        <a href="{% url 'userLog:superuser:ActEncOrg' organizador.id %}" type="button"
+           class="btn btn-primary mt-2"><i class="fas fa-eye"></i>Ver Informacion Completa</a>
+    </div>
+
+    <hr class="border border-info">
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.estado.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.estado }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.nomorganizacion.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.nomorganizacion }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.abreviacion.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.abreviacion }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.departamento.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.departamento }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.ciudad.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.ciudad }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.fechaCreacion.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.fechaCreacion }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.correo.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.correo }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.facebook.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.facebook }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.otraRedSocial.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.otraRedSocial }}
+        </div>
+    </div>
+{% endblock %}
+{% block formSec %}
+
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.whatsapp.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.whatsapp }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.nombreContacto.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.nombreContacto }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.contacto2.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.contacto2 }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.nombreContacto2.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.nombreContacto2 }}
+        </div>
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.fotografia.label_tag }}</div>
+        <div class="col-md-6 mt-3 card">
+            <img src="{{ form.instance.fotografia.url }} "/>
+        </div>
+
+
+    </div>
+    <div class="input-group-append">
+        <div class="col-md-4 text-right" style="">
+            {{ form.descripcion.label_tag }}</div>
+        <div class="col-md-8 mt-3">
+            {{ form.descripcion }}
+        </div>
+    </div>
+{% endblock %}

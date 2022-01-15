@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block librerias %}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+{% endblock %}
+{% block contenido %}
+    <hr>
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3 class="card-title">DataTable with default features</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    {% block thead %}
+
+                    {% endblock %}
+                </tr>
+                </thead>
+                <tbody>
+                {% block tbody %}
+
+                {% endblock %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    {% block tfoot %}
+
+                    {% endblock %}
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <hr>
+{% endblock %}
+{% block script %}
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'lib/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'lib/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <!-- DataTables  & Plugins -->
+{% endblock %}
+{% block funcScript %}
+    <script type="application/javascript">
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+{% endblock %}

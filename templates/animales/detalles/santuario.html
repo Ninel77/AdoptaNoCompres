@@ -1,0 +1,467 @@
+{% extends 'animales/DetalleAnimal(Nuevo3).html' %}
+{% load static %}
+{% block InfoPerfil %}
+    <div class="text-right mr-3">
+        {% if animalSant == None %}
+            <a href="{% url 'animal:RegistrarEnSant' animal.slug %}" type="button"
+               class="btn btn-primary {% if animalAdop != None %} disabled {% endif %} "><i class="fas fa-edit"></i>
+                Registrar permanentemente en un Santuario/Refugio</a>
+        {% else %}
+            <a href="{% url 'animal:ActEnSant' animalSant.id %}" type="button"
+               class="btn btn-primary {% if animalAdop != None %} disabled
+               {% endif %} "><i class="fas fa-edit"></i> Actualizar datos</a>
+
+        {% endif %}
+    </div>
+    <hr>
+    {% if animalSant == Nonel %}
+        <div class="alert alert-danger text-uppercase font-weight-bold text-lg">{{ message3 }}</div>
+        <hr>
+    {% else %}
+        <div class="row container">
+            <div class="col-md-12">
+                <ul class="nav nav-pills nav-fill mb-3 text-uppercase" id="pills-tab" role="tablist"
+                    style="background-color: #e3f2fd;">
+                    <li class="nav-item">
+                        <a class="nav-link active btn btn-block" id="pills-info-tab" data-toggle="pill"
+                           href="#pills-info"
+                           role="tab"
+                           aria-controls="pills-info" aria-selected="true"><b>Datos del ingreso al santuario</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block" id="pills-evaluacion-tab" data-toggle="pill"
+                           href="#pills-evaluacion"
+                           role="tab"
+                           aria-controls="pills-evaluacion" aria-selected="false"><b>Informacion de la
+                            evaluacion</b></a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-info" role="tabpanel"
+                         aria-labelledby="pills-info-tab">
+                        <div class="row font-weight-bold">
+                            <div class="col-md-4 card card-body">
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Fecha de Ingreso:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animalSant.fechaIngresoSan }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Edad aproximado del animal de compañia:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.Edad }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="font-weight-bold text-uppercase">Descripcion del Ingreso: </p>
+                                </div>
+                                <div class="row col-md-12 card-body border border-primary font-weight-bold">
+                                    {{ animalSant.descripcionSan }}
+                                </div>
+                            </div>
+                            <div class="col-md-4 card card-body">
+                                <div>
+                                    <p class="text-center font-weight-bold text-uppercase">Informacion Voluntario
+                                        Encargado:</p>
+                                </div>
+                                <hr>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Nombre Completo:</p>
+                                    <p class="col-md-11 rounded border border-primary font-weight-bold">
+                                        {{ animalSant.voluntarioAcargo.user.persona.Nombre }}
+                                        {{ animalSant.voluntarioAcargo.user.persona.Apellido }}
+                                    </p>
+                                    <p class="font-weight-bold">Carnet:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.voluntarioAcargo.user.persona.Carnet }}(
+                                        {{ animalSant.voluntarioAcargo.user.persona.Extencion }})
+                                    </p>
+                                    <p class="font-weight-bold">Contacto:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.voluntarioAcargo.user.persona.Celular }}
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 card card-body">
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Nombre del santuario:</p>
+                                    <p class="col-md-11 rounded border border-primary font-weight-bold">{{ animalSant.nombreSantuario }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Direccion del santuario:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.direccionSantuario }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Nombre del encargado del santuario:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.nombreEncSan }}</p>
+                                </div>
+                                <div class="row text-uppercase">
+                                    <p class="font-weight-bold">Contacto del santuario:</p>
+                                    <p class="col-md-11 form-control border border-primary font-weight-bold">
+                                        {{ animalSant.contactoRef }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-evaluacion" role="tabpanel"
+                         aria-labelledby="pills-evaluacion-tab">
+                        <div class="row text-uppercase">
+                            <div class="col-md-6 ">
+                                <div class="card card-body">
+                                    <p class="font-weight-bold">Tipo de Alimentacion</p>
+                                    <p class="col-md-11 form-control border border-primary">{{ animalSant.datosMedicos.tipoAlim }}</p>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Enfermedades</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">MOQUILLO</b>
+                                            {% if animalSant.datosMedicos.moquillo %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Parvovirus</b>
+                                            {% if animalSant.datosMedicos.parvovirus %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">rabia</b>
+                                            {% if animalSant.datosMedicos.rabia %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">cutaneaos</b>
+                                            {% if animalSant.datosMedicos.cutaneaos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">parasitos</b>
+                                            {% if animalSant.datosMedicos.parasitos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">desnutricion</b>
+                                            {% if animalSant.datosMedicos.desnutricion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Depresion</b>
+                                            {% if animalSant.datosMedicos.Depresion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Ansiedad</b>
+                                            {% if animalSant.datosMedicos.Ansiedad %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional de alguna enfermedad(es)</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.masInfoEnfer }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Informacion acerca de Discapacidad(es)</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary">
+                                            <b class="mr-2">Muestra alguna discapacidad</b>
+                                            {% if animalSant.datosMedicos.discapacidad %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    {% if animalSant.datosMedicos.discapacidad %}
+                                        <div class="row ">
+                                            <b class="mr-2">tipo de discapacidad</b>
+                                            <p class="col-md-12 form-control border border-primary">
+                                                {{ animalSant.datosMedicos.Tipodiscapacidad }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto alguna discapacidad</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.masInfoDisca }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Problemas de socializacion Con:</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-6 form-control border border-primary">
+                                            <b class="mr-2">Niños menores</b>
+                                            {% if animalSant.datosMedicos.probCNinosMenores %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Adolecentes</b>
+                                            {% if animalSant.datosMedicos.probCAdol %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Jovenes</b>
+                                            {% if animalSant.datosMedicos.probCjovenes %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Adultos</b>
+                                            {% if animalSant.datosMedicos.probCAdultos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-8 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Adultos Mayores</b>
+                                            {% if animalSant.datosMedicos.probCAdultosM %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Mujeres</b>
+                                            {% if animalSant.datosMedicos.probMujeres %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">Hombres</b>
+                                            {% if animalSant.datosMedicos.probHombres %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <p class="col-md-6 col-sm-3 form-control border border-primary">
+                                            <b class="mr-2">gatos</b>
+                                            {% if animalSant.datosMedicos.probSocialGatos %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-3 form-control border border-primary">
+                                            <b class="mr-2">perros</b>
+                                            {% if animalSant.datosMedicos.probSocialPerros %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                            <b class="mr-2">otros animales</b>
+                                            {% if animalSant.datosMedicos.probSocialOtros %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a los problemas de
+                                            socializacion</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.masInfoDisca }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Vacunas</p>
+                                    <hr>
+                                    {% if animalSant.datosMedicos.tipoVacuna %}
+                                        <div class="row ">
+                                            <b class="mr-2">Tipo de Vacunas</b>
+                                            <p class="col-md-6 col-sm-6 form-control border border-primary">
+
+                                                {{ animalSant.datosMedicos.tipoVacuna }}
+                                            </p>
+                                            <b class="mr-2">Fecha de la vacuna</b>
+                                            <p class="col-md-6 col-sm-6 form-control border border-primary">
+
+                                                {{ animalSant.datosMedicos.ultimaFechaV }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="row ">
+                                        <p class="col-md-8 col-sm-8 form-control border border-primary">
+                                            <b class="mr-2">Vacuna antirrabica</b>
+                                            {% if animalSant.datosMedicos.vacAntirrabica %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalSant.rabia.vacAntirrabica %}
+                                            <b class="mr-2">Fecha de vacuna antirrabica</b>
+                                            <p class="col-md-6 col-sm-6 form-control border border-primary">
+                                                {{ animalSant.datosMedicos.ultimaFechaReb }}
+                                            </p>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a las vacunas</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.masInfoVac }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Desparacitacion</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary">
+                                            <b class="mr-2">Desparacitado</b>
+                                            {% if animalSant.datosMedicos.desparacitacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalSant.datosMedicos.desparacitacion %}
+                                            <b class="mr-2">Fecha de la ultima Desparacitacion</b>
+                                            <p class="col-md-12 form-control border border-primary">
+                                                {{ animalSant.datosMedicos.ultimaFechaDes }}
+                                            </p>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional respecto a las vacunas</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.masInfoVac }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    <p class="font-weight-bold text-center">Estado reproductivo</p>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary">
+                                            <b class="mr-2">castrado/esterilizada</b>
+                                            {% if animalSant.datosMedicos.esterilizacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% if animalSant.datosMedicos.esterilizacion %}
+                                            <b class="mr-2">Fecha de castracion/esterilizacion</b>
+                                            <p class="col-md-12 form-control border border-primary">
+                                                {{ animalSant.datosMedicos.fechaEster }}
+                                            </p>
+                                            <b class="mr-2">Codigo castracion/esterilizacion</b>
+                                            <p class="col-md-12 form-control border border-primary">
+                                                {{ animalSant.datosMedicos.codigoEster }}
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary">
+                                            <b class="mr-2">En gestacion(embarazada/preñada)</b>
+                                            {% if animalSant.datosMedicos.gestacion %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional del estado de Gestacion</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.infoGesta }}
+                                        </p>
+                                    </div>
+                                    <hr>
+                                    <div class="row ">
+                                        <p class="col-md-12 form-control border border-primary">
+                                            <b class="mr-2">Tiene crias (esta dando de lactar)</b>
+                                            {% if animalSant.datosMedicos.lactancia %}
+                                                <i class="far fa-check-circle" style="color: forestgreen"></i>
+                                            {% else %}
+                                                <i class="fas fa-times-circle" style="color:red;"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="row ">
+                                        <b class="mr-2">Informacion adicional del estado de Lactancia</b>
+                                        <p class="col-md-12 form-control border border-primary">
+                                            {{ animalSant.datosMedicos.infoLac }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

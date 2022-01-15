@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h5>{{ titulo }}</h5>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-2 ml-2 mt-2 mr-2">
+            <div class=" bg bg-light mt-2">
+                <div class="text-center mt-2" style="border-radius: 40px; ">
+                    <h5 class="mt-2 mb-2">{{ tituloPrim }}</h5>
+                </div>
+                <hr>
+                <div class="content mt-2 mr-2 ml-5 mb-2">
+                    {% block formPrim %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2 ml-2 mt-2 ">
+            <div class="col-md-5 bg bg-light ">
+                <div class="content text-center mt-2" style="border-radius: 40px; ">
+                    <h5 class="mt-2 mb-2">{{ tituloSec }}</h5>
+                </div>
+                <hr>
+                <div class="content mt-2">
+                    {% block formSec %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="col-md-6 bg bg-light ml-5">
+                <div class="content text-center mt-2" style="border-radius: 40px; ">
+                    <h5>{{ tituloTer }}</h5>
+                </div>
+                <hr>
+                <div class="content mt-2">
+                    {% block formTer %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5 ml-2 mt-2 mr-2 ">
+            <button class="btn btn-block btn-success mt-3" type="submit">{{ accion }}</button>
+        </div>
+        <div class="row mb-2 ml-2 mt-2 "></div>
+    </form>
+{% endblock %}

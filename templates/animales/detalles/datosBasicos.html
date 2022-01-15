@@ -1,0 +1,75 @@
+{% extends 'animales/DetalleAnimal(Nuevo3).html' %}
+{% load static %}
+
+{% block InfoPerfil %}
+    <div class="text-right mr-3">
+        <a href="{% url 'animal:ActDatosAnim' animalResc.slug %}" type="button"
+           class="btn btn-primary "><i class="fas fa-edit"></i> Actualizar datos del Animal de Compañia</a>
+    </div>
+    <hr>
+    <div class="row container-fluid">
+        <div class="col-md-3 text-uppercase font-weight-bold" >
+            {% if animalResc.fotoRescate %}
+                <img class="img-fluid" src="{{ animalResc.fotoRescate.url }}" style="height: 200px" />
+                <div class="card card-header bg bg-white">Foto de ingreso</div>
+            {% else %}
+                <h3>Error al cargar imagen</h3>
+            {% endif %}
+            {% if animalEnAdop.fotoEnAdopcion %}
+                <img class="img-fluid" src="{{ animalEnAdop.fotoEnAdopcion.url }}"/>
+                <div class="card card-header bg bg-white">Foto para la Adopcion</div>
+            {% endif %}
+            {% if animalAdop.fotoAdopcion %}
+                <img class="img-fluid" src="{{ animalAdop.fotoAdopcion.url }}"/>
+                <div class="card card-header bg bg-white">Foto de la Adopcion</div>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <div class="row text-uppercase ">
+                <div class="col-md-6 card card-body ">
+                    <div class="row">
+                        <p class="font-weight-bold">Nombre:</p>
+                        <p class="col-md-11 form-control form-control border border-primary font-weight-bold">{{ animal.nombre }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Especie:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.especie }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Raza:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.raza.raza }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Tamaño:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.tamano }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 card card-body">
+                    <div class="row">
+                        <p class="font-weight-bold">Genero:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.sexo }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Color pelaje principal:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.color1 }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Color Pelaje secundario:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.color2 }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold">Estado dentro de la organizacion:</p>
+                        <p class="col-md-11 form-control border border-primary font-weight-bold">{{ animal.estado }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class=" row card card-body">
+                <p class="font-weight-bold text-uppercase">Información extra del animal: </p>
+                <div class="card-body border border-primary bg bg-white font-weight-bold"><b>{{ animal.descripcion }}</b>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+    </div>
+{% endblock %}

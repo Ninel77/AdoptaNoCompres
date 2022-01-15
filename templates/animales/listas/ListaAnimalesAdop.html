@@ -1,0 +1,33 @@
+{% extends 'base/baseListasDatos.html' %}
+{% load static %}
+{% block thead %}
+    <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Especie</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Voluntario Encargado</th>
+        <th scope="col">Fecha de Adopcion</th>
+        <th scope="col">Carnet Adoptante</th>
+        <th scope="col">Editar</th>
+    </tr>
+
+
+{% endblock %}
+{% block tbody %}
+    {% for animales in object_list %}
+        <tr>
+            <td>{{ animales.animal.slug }}</td>
+            <td>{{ animales.animal.nombre }}</td>
+            <td>{{ animales.animal.especie }}</td>
+            <td>{{ animales.Edad }}</td>
+            <td>{{ animales.nombreVol }}</td>
+            <td>{{ animales.fechaRegistroAdop }}</td>
+            <td>{{ animales.adoptante.persona.Carnet }}</td>
+            <td>
+                <a href="{% url 'animal:detDatAnim(Adop)' animales.slug %}" type="button"
+                   class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

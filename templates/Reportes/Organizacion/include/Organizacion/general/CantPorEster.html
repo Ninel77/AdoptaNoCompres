@@ -1,0 +1,32 @@
+<div class="card-body table-responsive p-0 mt-3">
+    <table class="table table-bordered table-hover text-center text-wrap" id="example">
+        <thead>
+        <tr>
+            <th rowspan="2" class="align-middle"></th>
+            <th colspan="4" class="bg-info">ANIMAL</th>
+        </tr>
+        <tr>
+            <th class="bg-info" scope="col" class="align-middle">Ingresados</th>
+            <th class="bg-info" scope="col" class="align-middle">En Adopcion</th>
+            <th class="bg-info" scope="col" class="align-middle">Adoptados</th>
+            <th class="bg-info" scope="col" class="align-middle">En Santuario</th>
+        </tr>
+        </thead>
+        <tbody class="font-weight-bold">
+        <tr>
+            <td class="bg-info">CASTRACIÓN</td>
+            <td>{{ tEstMIn }}</td>
+            <td>{{ tEstMEnAdop }}</td>
+            <td>{{ tEstMAdop }}</td>
+            <td>{{ tEstMEnSant }}</td>
+        </tr>
+        <tr>
+            <td class="bg-info">ESTERILIZACIÓN</td>
+            <td>{{ tEstFIn }}</td>
+            <td>{{ tEstFEnAdop }}</td>
+            <td>{{ tEstFAdop }}</td>
+            <td>{{ tEstFEnSant }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

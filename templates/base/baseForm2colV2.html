@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block entity %}
+    {% if entity_anterior_url %}
+        <li class="breadcrumb-item"><a href="{{ entity_anterior_url }}"><b>{{ entity_anterior }}</b></a></li>
+    {% endif %}
+    <li class="breadcrumb-item"><a href="{{ entity_url }}">{{ entity }}</a></li>
+{% endblock %}
+{% block contenido %}
+    <div class="row content-header text-center bg bg-primary">
+        <h4>{{ titulo }}</h4>
+    </div>
+    {% block errores %}
+
+    {% endblock %}
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mt-2">
+                <div class="col-md-5">
+                    <button class="btn btn-block bg-gradient-success " type="submit"><i class="fas fa-save"></i>
+                        {{ accion }}</button>
+                </div>
+                <div class="col-md-5">
+                    <a href="{{ entity_cancelar }}" class="btn btn-block bg-gradient-danger ">
+                        <i class="fas fa-undo-alt"></i>{{ accion2 }}</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="{{ accion_limpiar }}" class="btn btn-block bg-gradient-info ">
+                        <i class="fas fa-trash-alt"></i> {{ accionlimpiar }}</a>
+                </div>
+            </div>
+            <div class="row mt-2">
+
+                <div class="{% if col == 2 %} col-md-6 {% else %} col-md-12
+                    {% endif %}  card card-body">
+                    <div class="text-center" style="color: #043c75">
+                        <h4>{{ tituloPrim }}</h4>
+                    </div>
+                    <hr class="border border-info">
+                    {% block formPrin %}
+                    {% endblock %}
+                </div>
+                {% if col == 2 %}
+                    <div class="col-md-6 card card-body">
+                        {% if tituloSec %}
+                            <div class="text-center" style="color: #043c75">
+                                <h4>{{ tituloSec }}</h4>
+                            </div>
+                            <hr class="border border-info">
+                        {% endif %}
+
+                        {% block formSec %}
+                        {% endblock %}
+                    </div>
+
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock %}
